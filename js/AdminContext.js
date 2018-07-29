@@ -1,0 +1,1 @@
+const AdminContext = React.createContext();
