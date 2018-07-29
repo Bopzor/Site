@@ -1,12 +1,13 @@
 const { NavLink } = ReactRouterDOM;
 
-function renderCategoryLink(category) {
+function renderProjectLink(project) {
+  const title = project.title.toLowerCase();
   return (
     <p
-      key={category.id}
+      key={project.id}
     >
-      <NavLink to={{ pathname: `/articles/${category.id}`}} className="link" activeClassName="selected">
-        {category.name}
+      <NavLink to={{ pathname: `/${title}`}} className="link" activeClassName="selected">
+        {project.title}
       </NavLink>
     </p>
   );
@@ -21,17 +22,7 @@ const Aside = (props) => {
             All
           </NavLink>
         </p>
-        {props.categories.map((category) => renderCategoryLink(category))}
-
-        <Admin>
-          <Link
-            className="link"
-            to={{ pathname: `/add`}}
-          >
-            <i className="fas fa-plus fa-5x" />
-          </Link>
-        </Admin>
-
+        {props.projects.map((project) => renderProjectLink(project))}
       </aside>
     </div>
 )};

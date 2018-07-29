@@ -79,7 +79,7 @@ class ArticleForm extends React.Component {
 
       updateArticle(body, (result) => {
         this.props.onSaveArticle(result);
-        this.setState({redirect: `/article/${result.id}`});
+        this.setState({redirect: `/blog/article/${result.id}`});
       });
 
     } else {
@@ -92,7 +92,7 @@ class ArticleForm extends React.Component {
 
         postArticle(body, (result) => {
           this.props.onSaveArticle(result);
-          this.setState({redirect: `/article/${result.id}`});
+          this.setState({redirect: `/blog/article/${result.id}`});
         });
       }
     }

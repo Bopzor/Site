@@ -32,7 +32,7 @@ const Article = (props) => {
       <header className="a-header">
 
         <Link
-          to={{ pathname: `/article/${props.article.id}` }}
+          to={{ pathname: `/blog/article/${props.article.id}` }}
           className="link a-title"
         >
             <h2>{props.article.title}</h2>

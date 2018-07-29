@@ -46,25 +46,25 @@ function queryToServer(url, callback, opts) {
 }
 
 function getCategories(callback) {
-  const url = '/php/routes/category.php';
+  const url = '/blog/php/routes/category.php';
 
   queryToServer(url, callback);
 }
 
 function getArticlesList(callback) {
-  const url = '/php/routes/article.php';
+  const url = '/blog/php/routes/article.php';
 
   queryToServer(url, callback);
 }
 
 function getComments(articleId, callback) {
-  const url = `/php/routes/comment.php?article_id=${articleId}`;
+  const url = `/blog/php/routes/comment.php?article_id=${articleId}`;
 
   queryToServer(url, callback);
 }
 
 function postComment(data, callback) {
-  const url = '/php/routes/comment.php';
+  const url = '/blog/php/routes/comment.php';
   const opts = {
     method: 'POST',
     body: {
@@ -78,7 +78,7 @@ function postComment(data, callback) {
 }
 
 function postArticle(data, callback) {
-  const url = '/php/routes/article.php';
+  const url = '/blog/php/routes/article.php';
   const opts = {
     method: 'POST',
     body: {
@@ -93,7 +93,7 @@ function postArticle(data, callback) {
 }
 
 function removeArticle(articleId, callback) {
-  const url = `/php/routes/article.php?article_id=${articleId}`;
+  const url = `/blog/php/routes/article.php?article_id=${articleId}`;
   const opts = {
     method: 'DELETE',
     body: {
@@ -105,7 +105,7 @@ function removeArticle(articleId, callback) {
 }
 
 function updateArticle(data, callback) {
-  const url = `/php/routes/article.php?`;
+  const url = `/blog/php/routes/article.php?`;
   const opts = {
     method: 'POST',
     body: {
@@ -121,7 +121,7 @@ function updateArticle(data, callback) {
 }
 
 function isAdmin(callback) {
-  const url = '/php/routes/isAdmin.php'
+  const url = '/blog/php/routes/isAdmin.php'
   const opts = {
     method: 'POST',
     body: {

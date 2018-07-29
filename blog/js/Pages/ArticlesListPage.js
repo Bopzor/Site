@@ -8,7 +8,7 @@ const ArticlesListPage = (props) => (
       />
 
       <Link
-      to={{ pathname: `/article/${a.id}` }}
+      to={{ pathname: `/blog/article/${a.id}` }}
       className="link a-l-p-button-wrapper"
       >
         <button className="a-l-p-expend-button button">Read</button>

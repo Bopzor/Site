@@ -1,7 +1,7 @@
 const { BrowserRouter } = ReactRouterDOM;
 
 ReactDOM.render((
-  <BrowserRouter basename="/">
+  <BrowserRouter>
     <App />
   </BrowserRouter>
 ), document.getElementById('root'));
