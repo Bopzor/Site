@@ -111,6 +111,7 @@ nav {
 }
 
 .aside-flex-wrapper {
+  min-height: 500px;
   order: 2;
   width: 20%;
   display: flex;
