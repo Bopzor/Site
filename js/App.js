@@ -19,12 +19,14 @@ class App extends React.Component {
         <Header />
 
         <Switch>
-          <Route exact path='/' component={Site} />
           <Route path='/blog' component={Blog} />
-
+          
           <Route path='/login' render={() => (
               <LoginPage onSubmitLogin={(result) => this.onSubmitLogin(result)} />
           )} />
+
+          <Route path='/' component={Site} />
+
         </Switch>
 
 

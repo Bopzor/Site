@@ -34,7 +34,7 @@ class Site extends React.Component {
               />
             )} />
 
-            <Route eaxct path='/project/:id' render={(props) => (
+            <Route exact path='/project/:id' render={(props) => (
               <ProjectPage
                 project={findProject(props.match.params.id)}
               />
