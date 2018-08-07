@@ -116,6 +116,7 @@ nav {
   display: flex;
   flex-direction: column;
   margin-right: 50px;
+  min-height: 250px;
 }
 
 aside {
