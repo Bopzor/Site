@@ -39,6 +39,20 @@ class Site extends React.Component {
                 project={findProject(props.match.params.id)}
               />
             )} />
+
+            <Route exact path='/edit/:id' render={(props) => (
+              <ProjectForm
+                project={findProject(props.match.params.id)}
+                onSaveProject={(project) => this.onUpdateProject(project)}
+              />
+            )} />
+
+            <Route exact path='/add' render={() => (
+              <ProjectForm
+                project={null}
+                onSaveProject={(project) => this.onCreatePoject(project)}
+              />    
+            )} />
           </Switch>
 
         </main>

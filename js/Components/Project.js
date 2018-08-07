@@ -25,6 +25,25 @@ const Project = (props) => {
           <h2>{props.project.title}</h2>
         </Link>
 
+      <Admin>
+          <Link
+            to={{ pathname: `/` }}
+            className="link"
+          > 
+            <i
+              className="fas fa-minus link a-admin-tools"
+              onClick={() => props.onRemoveProject()}
+            ></i>
+          </Link>
+
+          <Link
+            to={{ pathname: `/edit/${props.project.id}` }}
+            className="link"
+          >
+            <i className="fas fa-pencil-alt a-admin-tools"></i>
+          </Link>
+        </Admin>
+
       </header>
 
       <div className="a-details-wrapper">      

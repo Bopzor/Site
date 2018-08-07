@@ -23,6 +23,16 @@ const Aside = (props) => {
           </NavLink>
         </p>
         {props.projects.map((project) => renderProjectLink(project))}
+
+        <Admin>
+            <Link
+              className="link"
+              to={{ pathname: `/add`}}
+            >
+              <i className="fas fa-plus fa-5x" />
+            </Link>
+        </Admin>
+      
       </aside>
     </div>
 )};

@@ -308,7 +308,7 @@ article .a-admin-tools {
   margin-top: 120px;
 }
 
-.article-form-container {
+.form-container {
   min-height: 450px; 
 }
 
@@ -316,7 +316,7 @@ legend {
   padding: 0 10px;
 }
 
-.a-f-input-wrapper {
+.f-input-wrapper {
   display: flex;
   flex-direction: column;
 }
@@ -329,17 +329,17 @@ legend {
   min-height: 450px;
 }
 
-.a-f-input-wrapper button:not(.button) {
+.f-input-wrapper button:not(.button) {
   color: #000;
   text-align: center;
   padding: 0;
 }
 
-.a-f-input-wrapper input {
+.f-input-wrapper input {
   border: 1px solid #EEE;
 }
 
-.a-f-input-wrapper select {
+.f-input-wrapper select {
   width: 50%;
   margin: 10px 0;
   padding: 12px 20px;
@@ -348,13 +348,13 @@ legend {
   min-height: 112px;
 }
 
-.a-f-bottom-wrapper {
+.f-bottom-wrapper {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
 }
 
-.a-f-input-wrapper button {
+.f-input-wrapper button {
   margin-right: 50px;
 }

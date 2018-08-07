@@ -110,7 +110,7 @@ class ArticleForm extends React.Component {
     const contentValue = this.props.article ? this.props.article.content : undefined;
 
     return (
-      <div className="article-form-container">
+      <div className="form-container">
         
         <form>
 
@@ -118,7 +118,7 @@ class ArticleForm extends React.Component {
               
             <legend>New article</legend>
 
-            <div className="a-f-input-wrapper">
+            <div className="f-input-wrapper">
 
               <input
                 type="text"
@@ -131,13 +131,13 @@ class ArticleForm extends React.Component {
 
               <label>Categories: </label>
 
-              <div className="a-f-bottom-wrapper">
+              <div className="f-bottom-wrapper">
 
                 <select multiple={true} value={this.state.selectValues} onChange={e => this.handleSelectChange(e)}>
                   {this.props.categories.map(category => renderCategoriesOptions(category))};
                 </select>
 
-                <div className="a-f-buttons">
+                <div className="f-buttons">
                   <button className="button" onClick={(e) => this.handleSubmitArticle(e)}>{submitValue}</button>
                   <button className="button" onClick={e => this.handleResetForm(e)}>Reset</button>
                 </div>
