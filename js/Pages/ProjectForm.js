@@ -10,13 +10,13 @@ class ProjectForm extends React.Component {
     if (project) {
       this.state = {
         titleValue: this.props.project.title,
-        githubValue: this.props.project.github,
+        repoValue: this.props.project.repo,
         urlValue: this.props.project.url,
       }
     } else {
       this.state = {
         titleValue: '',
-        githubValue: '',
+        repoValue: '',
         urlValue: '',
       }
     }
@@ -38,8 +38,8 @@ class ProjectForm extends React.Component {
     this.setState({contentValue: e.target.value});
   }
 
-  handleGithubChange(e) {
-    this.setState({githubValue: e.target.value});
+  handleRepoChange(e) {
+    this.setState({repoValue: e.target.value});
   }
 
   handleUrlChange(e) {
@@ -68,7 +68,7 @@ class ProjectForm extends React.Component {
         const body = {
           title: this.state.titleValue,
           content: this.textareaRef.current.value,
-          githubValue: this.state.githubValue,
+          repoValue: this.state.repoValue,
           urlValue: this.state.urlValue,
         }
 
@@ -113,13 +113,13 @@ class ProjectForm extends React.Component {
 
               <div className="p-f-bottom-wrapper">
                 <input 
-                  type="text"
-                  placeholder="github repo"
-                  onChange={e => this.handleGithubChange(e)}
-                  value={this.state.githubValue}
+                  type="url"
+                  placeholder="git repository"
+                  onChange={e => this.handleRepoChange(e)}
+                  value={this.state.repoValue}
                 />
                 <input 
-                  type="text"
+                  type="url"
                   placeholder="url"
                   onChange={e => this.handleUrlChange(e)}
                   value={this.state.urlValue}

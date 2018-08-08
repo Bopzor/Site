@@ -1,6 +1,7 @@
 function buildParams(body) {
   let params = '';
 
+
   Object.keys(body).forEach(key => {
     params += `${key}=${body[key]}&`
   });
@@ -41,7 +42,6 @@ function queryToServer(url, callback, opts) {
 
     }
   }
-
   xhr.send(params);
 }
 

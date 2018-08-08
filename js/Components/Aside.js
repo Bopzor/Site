@@ -21,7 +21,8 @@ const Aside = (props) => {
             All
           </NavLink>
         </p>
-        {props.projects.map((project) => renderProjectLink(project))}
+
+        {props.projects.map((p) => renderProjectLink(p))}
 
         <Admin>
             <Link

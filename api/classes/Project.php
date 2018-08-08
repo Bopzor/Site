@@ -6,7 +6,7 @@ class Project {
   public $id;
   public $title;
   public $content;
-  public $github;
+  public $repo;
   public $url;
 
   private $pdo;
@@ -15,7 +15,7 @@ class Project {
     $this->id = null;
     $this->title = null;
     $this->content = null;
-    $this->github = null;
+    $this->repo = null;
     $this->url = null;
 
     $this->pdo = getPDO();
@@ -24,7 +24,7 @@ class Project {
   public function getProjectsList() {
    $query = $this->pdo->prepare
     ('
-      SELECT p.title, p.content, p.publishedAt, p.id, p.github, p.url
+      SELECT p.title, p.content, p.publishedAt, p.id, p.repo, p.url
       FROM project p
       ORDER BY publishedAt DESC
     ');
@@ -35,15 +35,15 @@ class Project {
   }
 
   public function createProject() {
-    $query = $this->pdo->prepare('INSERT INTO project (title, content, github, url) VALUES (?, ?, ?, ?)');
+    $query = $this->pdo->prepare('INSERT INTO project (title, content, repo, url) VALUES (?, ?, ?, ?)');
 
-    $query->execute([$this->title, $this->content, $this->github, $this->url]);
+    $query->execute([$this->title, $this->content, $this->repo, $this->url]);
 
     $project_id = $this->pdo->lastInsertId();
 
     $query = $this->pdo->prepare
     ('
-      SELECT p.title, p.content, p.publishedAt, p.id, p.github, p.url
+      SELECT p.title, p.content, p.publishedAt, p.id, p.repo, p.url
       FROM project p
       WHERE p.id = ?
     ');
@@ -69,15 +69,15 @@ class Project {
   public function updateProject() {
     $query = $this->pdo->prepare('
       UPDATE project
-      SET title=?, content=?, github=?, url=?
+      SET title=?, content=?, repo=?, url=?
       WHERE id=?
     ');
 
-    $query->execute([$this->title, $this->content, $this->github, $this->url, $this->id]);
+    $query->execute([$this->title, $this->content, $this->repo, $this->url, $this->id]);
 
     $query = $this->pdo->prepare
     ('
-      SELECT p.title, p.content, p.publishedAt, p.id, p.github, p.url
+      SELECT p.title, p.content, p.publishedAt, p.id, p.repo, p.url
       FROM project p
       WHERE p.id = ?
     ');

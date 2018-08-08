@@ -19,7 +19,7 @@ if ($method === 'GET') {
       $p = new Project();
       $p->title = $_POST['title']; 
       $p->content = $_POST['content'];
-      $p->github = $_POST['github'];
+      $p->repo = $_POST['repo'];
       $p->url = $_POST['url'];
 
       if(isset($_POST['id'])) {

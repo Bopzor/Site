@@ -12,8 +12,8 @@ function postProject(data, callback) {
     body: {
       title: data.title,
       content: data.content,
-      github: data.github,
-      url: data.url,
+      repo: data.repoValue,
+      url: data.urlValue,
     },
     token: localStorage.getItem('token'),
   }
@@ -41,8 +41,8 @@ function updateProject(data, callback) {
       id: data.id,
       title: data.title,
       content: data.content,
-      github: data.github,
-      url: data.url,
+      repo: data.repoValue,
+      url: data.urlValue,
     },
     token: localStorage.getItem('token'),
   }
