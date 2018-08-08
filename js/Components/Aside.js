@@ -1,12 +1,11 @@
 const { NavLink } = ReactRouterDOM;
 
 function renderProjectLink(project) {
-  const title = project.title.toLowerCase();
   return (
     <p
       key={project.id}
     >
-      <NavLink to={{ pathname: `/${title}`}} className="link" activeClassName="selected">
+      <NavLink to={{ pathname: `/${project.url}`}} className="link" activeClassName="selected">
         {project.title}
       </NavLink>
     </p>

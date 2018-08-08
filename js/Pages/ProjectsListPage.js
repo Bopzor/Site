@@ -3,6 +3,7 @@ const ProjectsListPage = (props) => (
     <div className="a-l-p-wrapper" key={p.id}>
       <Project
         project={p}
+        onRemoveProject={() => props.onRemoveProject(p.id)}
         showAll={false}
       />
 

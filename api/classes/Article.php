@@ -3,6 +3,13 @@
 require '../utilities.php';
 
 class Article {
+  public $id;
+  public $title;
+  public $content;
+  public $categoriesId;
+
+  private $pdo;
+
   public function __construct() {
     $this->id = null;
     $this->title = null;

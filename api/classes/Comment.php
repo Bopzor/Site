@@ -3,6 +3,12 @@
 require '../utilities.php';
 
 class Comment {
+  public $nick;
+  public $content;
+  public $articleId;
+
+  private $pdo;
+
   public function __construct() {
     $this->nick = null;
     $this->content = null;

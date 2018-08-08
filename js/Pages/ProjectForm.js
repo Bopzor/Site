@@ -8,9 +8,17 @@ class ProjectForm extends React.Component {
     const { project } = props;
 
     if (project) {
-      this.state = {titleValue: this.props.project.title}
+      this.state = {
+        titleValue: this.props.project.title,
+        githubValue: this.props.project.github,
+        urlValue: this.props.project.url,
+      }
     } else {
-      this.state = {titleValue: ''}
+      this.state = {
+        titleValue: '',
+        githubValue: '',
+        urlValue: '',
+      }
     }
   }
 
@@ -30,6 +38,14 @@ class ProjectForm extends React.Component {
     this.setState({contentValue: e.target.value});
   }
 
+  handleGithubChange(e) {
+    this.setState({githubValue: e.target.value});
+  }
+
+  handleUrlChange(e) {
+    this.setState({urlValue: e.target.value});
+  }
+
   handleSubmitProject(e) {
     e.preventDefault()
 
@@ -38,6 +54,8 @@ class ProjectForm extends React.Component {
         id: this.props.project.id,
         title: this.state.titleValue,
         content: this.textareaRef.current.value,
+        githubValue: this.state.githubValue,
+        urlValue: this.state.urlValue,
       }
 
       updateProject(body, (result) => {
@@ -50,6 +68,8 @@ class ProjectForm extends React.Component {
         const body = {
           title: this.state.titleValue,
           content: this.textareaRef.current.value,
+          githubValue: this.state.githubValue,
+          urlValue: this.state.urlValue,
         }
 
         postProject(body, (result) => {
@@ -91,10 +111,22 @@ class ProjectForm extends React.Component {
 
               <textarea id="mdeditor" defaultValue={contentValue} ref={this.textareaRef} />
 
-              <div className="f-bottom-wrapper">
-
+              <div className="p-f-bottom-wrapper">
+                <input 
+                  type="text"
+                  placeholder="github repo"
+                  onChange={e => this.handleGithubChange(e)}
+                  value={this.state.githubValue}
+                />
+                <input 
+                  type="text"
+                  placeholder="url"
+                  onChange={e => this.handleUrlChange(e)}
+                  value={this.state.urlValue}
+                />
+                
                 <div className="f-buttons">
-                  <button className="button" onClick={(e) => this.handleSubmitArticle(e)}>{submitValue}</button>
+                  <button className="button" onClick={(e) => this.handleSubmitProject(e)}>{submitValue}</button>
                   <button className="button" onClick={e => this.handleResetForm(e)}>Reset</button>
                 </div>
 

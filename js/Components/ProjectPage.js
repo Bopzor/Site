@@ -4,10 +4,11 @@ const ProjectPage = (props) => {
   }
 
   return (
-    <div className="articlePage">
+    <div className="projectPage">
 
       <Project
         project={props.project}
+        onRemoveProject={() => props.onRemoveProject(props.project.id)}
         showAll={true}
       />
 

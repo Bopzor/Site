@@ -2,19 +2,42 @@ const { Switch, Route } = ReactRouterDOM;
 
 class Site extends React.Component {
   state = {
-    projects: [
-      {
-        id: 0,
-        title: 'Blog', 
-        content: 'Blog with article and comments',
-      },
-      {
-        id: 1,
-        title: 'Hanoi', 
-        content: 'Hanoi',
-      },
-    ],
+    projects: [],
   };
+
+  componentDidMount() {
+    getProjectsList((result) => this.setState({projects: result}));
+  }
+
+  handleRemoveProject(projectId) {
+    removeProject(projectId, (result) => this.onRemoveProject(result));
+  }
+
+  onRemoveProject(projectId) {
+    let projects = this.state.projects.slice();
+    const idx = projects.findIndex(p => p.id === ~~projectId);
+    
+    projects.splice(idx, 1);
+
+    this.setState({projects});
+  }
+
+  onCreateProject(project) {
+    let projects = this.state.projects.slice();
+
+    projects.splice(0, 0, project);
+
+    this.setState({projects});
+  }
+
+  onUpdateProject(project) {
+    let projects = this.state.projects.slice();
+    const idx = projects.findIndex(p => p.id === ~~project.id);
+
+    projects.splice(idx, 1, project);
+
+    this.setState({projects});
+  }
 
   render() {
     const findProject = (id) => this.state.projects.find(p => p.id === ~~id);
@@ -31,12 +54,14 @@ class Site extends React.Component {
             <Route exact path='/' render={() => (
               <ProjectsListPage
                 projects={this.state.projects}
+                onRemoveProject={(projectId) => this.handleRemoveProject(projectId)}
               />
             )} />
 
             <Route exact path='/project/:id' render={(props) => (
               <ProjectPage
                 project={findProject(props.match.params.id)}
+                onRemoveProject={(projectId) => this.handleRemoveProject(projectId)}
               />
             )} />
 
@@ -50,7 +75,7 @@ class Site extends React.Component {
             <Route exact path='/add' render={() => (
               <ProjectForm
                 project={null}
-                onSaveProject={(project) => this.onCreatePoject(project)}
+                onSaveProject={(project) => this.onCreateProject(project)}
               />    
             )} />
           </Switch>

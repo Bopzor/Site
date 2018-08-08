@@ -3,6 +3,8 @@
 require '../utilities.php';
 
 class Category {
+  private $pdo;
+
   public function __construct() {
     $this->pdo = getPDO();
   }

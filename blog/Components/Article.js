@@ -52,7 +52,7 @@ const Article = (props) => {
           </Link>
 
           <Link
-            to={{ pathname: `/article/edit/${props.article.id}` }}
+            to={{ pathname: `/blog/article/edit/${props.article.id}` }}
             className="link"
           >
             <i className="fas fa-pencil-alt a-admin-tools"></i>
