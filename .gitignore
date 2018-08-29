@@ -5,3 +5,4 @@ init.sh
 php/environment.php
 .htaccess
 environment.php
+node_modules/
