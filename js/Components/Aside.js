@@ -1,11 +1,23 @@
 const { NavLink } = ReactRouterDOM;
 
 function renderProjectLink(project) {
+  if (project.url.match(/^(https?:\/\/)/)) {
+    return (
+      <p
+        key={project.id}
+      >
+        <a href={project.url} className="link">
+          {project.title}
+        </a>
+      </p>
+    );    
+  }
+
   return (
     <p
       key={project.id}
     >
-      <NavLink to={{ pathname: `/${project.url}`}} className="link" activeClassName="selected">
+      <NavLink exact to={{ pathname: `/${project.url}`}} className="link" activeClassName="selected">
         {project.title}
       </NavLink>
     </p>
