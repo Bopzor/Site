@@ -1,7 +1,7 @@
-const { BrowserRouter } = ReactRouterDOM;
+const { HashRouter } = ReactRouterDOM;
 
 ReactDOM.render((
-  <BrowserRouter>
+  <HashRouter>
     <App />
-  </BrowserRouter>
+  </HashRouter>
 ), document.getElementById('root'));
