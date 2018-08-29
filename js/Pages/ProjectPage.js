@@ -1,5 +1,5 @@
 const ProjectPage = (props) => {
-  if (props.project === null) {
+  if (!props.project) {
     return null;
   }
 

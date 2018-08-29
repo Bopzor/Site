@@ -1,5 +1,5 @@
 const ArticlePage = (props) => {
-  if (props.article === null) {
+  if (!props.article) {
     return null;
   }
 
