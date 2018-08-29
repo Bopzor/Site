@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router';
-import sha256 from 'sha256';
+import { sha256 } from 'js-sha256';
 
 import { isAdmin } from '../utilities.js';
 
