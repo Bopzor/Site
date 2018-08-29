@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import './css/style.css';
-import './css/reset.css';
 import { isAdmin } from './utilities';
 
 import AdminContext from './adminContext.js';
