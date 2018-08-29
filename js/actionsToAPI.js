@@ -1,12 +1,15 @@
+const BASE_API_URL = '/api/routes';
+
 function getProjectsList(callback) {
-  const url = '/api/routes/project.php';
+  const url = `${BASE_API_URL}/project.php`;
 
   queryToServer(url, callback);
 }
 
 
 function postProject(data, callback) {
-  const url = '/api/routes/project.php';
+  const url = `${BASE_API_URL}/project.php`;
+
   const opts = {
     method: 'POST',
     body: {
@@ -22,7 +25,7 @@ function postProject(data, callback) {
 }
 
 function removeProject(projectId, callback) {
-  const url = `/api/routes/project.php?project_id=${projectId}`;
+  const url = `${BASE_API_URL}/project.php?project_id=${projectId}`;
   const opts = {
     method: 'DELETE',
     body: {
@@ -34,7 +37,7 @@ function removeProject(projectId, callback) {
 }
 
 function updateProject(data, callback) {
-  const url = `/api/routes/project.php?`;
+  const url = `${BASE_API_URL}/project.php?`;
   const opts = {
     method: 'POST',
     body: {

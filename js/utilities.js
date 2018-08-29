@@ -39,14 +39,14 @@ function queryToServer(url, callback, opts) {
         callback(xhr.response);
 
       }
-
+      
     }
   }
   xhr.send(params);
 }
 
 function isAdmin(callback) {
-  const url = '/api/routes/isAdmin.php'
+  const url = `${BASE_API_URL}/isAdmin.php`;
   const opts = {
     method: 'POST',
     body: {
