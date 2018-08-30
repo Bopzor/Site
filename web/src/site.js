@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 
 import { getProjectsList, removeProject } from './actionsToAPI'; 
 
+import CV from './pages/cv.js'
 import Aside from './components/aside.js';
 import ProjectPage from './pages/projectPage.js';
 import ProjectsListPage from './pages/projectsListPage.js';
@@ -59,6 +60,8 @@ class Site extends Component {
         <main>
 
           <Switch>
+            <Route path='/cv' component={CV} />
+
             <Route exact path='/' render={() => (
               <ProjectsListPage
                 projects={this.state.projects}
