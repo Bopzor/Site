@@ -58,7 +58,7 @@ class ProjectForm extends Component {
         id: this.props.project.id,
         title: this.state.titleValue,
         content: this.textareaRef.current.value,
-        githubValue: this.state.githubValue,
+        repoValue: this.state.repoValue,
         urlValue: this.state.urlValue,
       }
 
