@@ -32,7 +32,7 @@ class ArticleForm extends React.Component {
 
   componentDidMount() {
     const md = new MdEditor('#mdeditor', {
-      uploader: 'undefined',
+      uploader: 'http://localhost/api/routes/uploader.php',
       preview: true,
       images: [],
     });
