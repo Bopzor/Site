@@ -1,6 +1,6 @@
 import React from 'react';
 import { Redirect } from 'react-router';
-import MdEditor from 'js-markdown-editor';
+import MdEditor from '../../mdeditor.js';
 
 import { postArticle, updateArticle } from '../../blogActionsToAPI.js';
 
