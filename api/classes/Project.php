@@ -26,7 +26,6 @@ class Project {
     ('
       SELECT p.title, p.content, p.publishedAt, p.id, p.repo, p.url
       FROM project p
-      ORDER BY publishedAt DESC
     ');
 
     $query->execute();
