@@ -2,14 +2,19 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router';
 import { sha256 } from 'js-sha256';
 
-import { isAdmin } from '../utilities.js';
-
 import Admin from '../components/admin.js';
 
 class LoginPage extends Component {
   state = {
-    value: '',
-    redirect: null,
+      value: '',
+      redirect: null,
+      admin: this.props.admin,
+  };
+
+  static getDerivedStateFromProps(props, state) {
+    if(state.admin !== props.admin) {
+      return {redirect: '/'};
+    };
   }
 
   handleChange(e) {
@@ -27,7 +32,8 @@ class LoginPage extends Component {
 
     localStorage.setItem('token', hash);
 
-    this.props.onSubmitLogin();
+    this.setState({value: ''});
+    this.props.onSubmitLog();
   }
 
   handleLogout(e) {
@@ -35,8 +41,8 @@ class LoginPage extends Component {
 
     localStorage.clear();
 
-    this.setState({value: '', redirect: '/'});
-    isAdmin(this.props.onSubmitLogin);
+    this.setState({value: ''});
+    this.props.onSubmitLog();
   }
 
   handleRedirect() {
@@ -48,7 +54,7 @@ class LoginPage extends Component {
   render() {
     return (
       <div>
-
+      
         <Admin>
           <div className="login-page">
             <button

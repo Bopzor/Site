@@ -6,7 +6,6 @@ import { isAdmin } from './utilities';
 import AdminContext from './adminContext.js';
 import Header from './components/header.js';
 
-
 import Blog from './blog.js';
 import Site from './site.js';
 import LoginPage from './pages/loginPage.js';
@@ -20,7 +19,7 @@ class App extends Component {
     isAdmin((result) => this.setState({admin: result}));
   }
 
-  onSubmitLogin() {
+  onSubmitLog() {
     isAdmin((result) => this.setState({admin: result}));
   }
 
@@ -30,10 +29,14 @@ class App extends Component {
         <Header />
 
         <Switch>
+
           <Route path='/blog' component={Blog} />
           
           <Route path='/login' render={() => (
-              <LoginPage onSubmitLogin={(result) => this.onSubmitLogin(result)} />
+              <LoginPage 
+                admin={this.state.admin}
+                onSubmitLog={(result) => this.onSubmitLog(result)}
+              />
           )} />
 
           <Route path='/' component={Site} />
