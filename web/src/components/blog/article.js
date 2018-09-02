@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import markdown from 'markdown';
+import { State } from 'markup-it';
+import markdown from 'markup-it/lib/markdown';
+import html from 'markup-it/lib/html';
 
 import Admin from '../admin.js';
 
@@ -10,8 +12,13 @@ const renderCategory = (category, articleId) => (
 );
 
 const createMarkeup = (content) => {
-  const html_content = markdown.toHTML(content, 'Maruku')
-  
+  const stateMarkdown = State.create(markdown);
+  const document = stateMarkdown.deserializeToDocument(content);
+
+  const stateHTML = State.create(html);
+
+  const html_content = stateHTML.serializeDocument(document);
+
   return {__html: html_content};
 }
 

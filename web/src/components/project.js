@@ -1,34 +1,77 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { markdown } from 'markdown';
 
+import { State } from 'markup-it';
+import markdown from 'markup-it/lib/markdown';
+import html from 'markup-it/lib/html';
+
+import '../css/post.css'
 
 import Admin from './admin.js';
 
 const createMarkeup = (content) => {
-  const html_content = markdown.toHTML(content, 'Maruku')
-  
+  const stateMarkdown = State.create(markdown);
+  const document = stateMarkdown.deserializeToDocument(content);
+
+  const stateHTML = State.create(html);
+
+  const html_content = stateHTML.serializeDocument(document);
+
   return {__html: html_content};
 }
 
+
+const createLinks = (project) => {
+  return (
+    <div className="ressources">
+
+      <div className="tooltip">
+        <span className="tooltip-text">Site</span>
+        <a href={project.url} className="link">
+          <i className="fas fa-globe fa-2x"></i>
+        </a>
+      </div>
+      <div className="tooltip">
+        <span className="tooltip-text">Github</span>
+        <a href={project.repo} className="link">
+          <i className="fab fa-github fa-2x"></i>
+        </a>
+      </div>
+
+    </div>
+  ); 
+}
+
 const Project = (props) => {
+  let header = (
+    <Link
+      to={{ pathname: `/project/${props.project.id}` }}
+      className="link a-title"
+    >
+      <h2>{props.project.title}</h2>
+    </Link>
+  );
   let contentClassName = 'a-content';
 
   if (!props.showAll) {
     contentClassName += ' a-content-overflow';
-  } 
+  } else {
+    header = (
+      <div className="header-project-full a-title">
+        <h2>{props.project.title}</h2>
+
+          {createLinks(props.project)}          
+
+      </div>
+    );
+  }
 
   return (
     <article className="article">
 
       <header className="a-header">
 
-        <Link
-          to={{ pathname: `/project/${props.project.id}` }}
-          className="link a-title"
-        >
-          <h2>{props.project.title}</h2>
-        </Link>
+        {header}
 
       <Admin>
           <Link
