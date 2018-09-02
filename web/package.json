@@ -1,5 +1,5 @@
 {
-  "name": "my-app",
+  "name": "bopzor.me",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -101,5 +101,6 @@
   },
   "devDependencies": {
     "file-loader": "^2.0.0"
-  }
+  },
+  "homepage": "https://bopzor.me/"
 }
