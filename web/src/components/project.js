@@ -27,13 +27,13 @@ const createLinks = (project) => {
 
       <div className="tooltip">
         <span className="tooltip-text">Site</span>
-        <a href={project.url} className="link">
+        <a href={project.url} target="_blank" className="link">
           <i className="fas fa-globe fa-2x"></i>
         </a>
       </div>
       <div className="tooltip">
         <span className="tooltip-text">Github</span>
-        <a href={project.repo} className="link">
+        <a href={project.repo} target="_blank" className="link">
           <i className="fab fa-github fa-2x"></i>
         </a>
       </div>
