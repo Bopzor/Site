@@ -1,7 +1,3 @@
-img[alt="www.000webhost.com"] {
-  display: none !important;
-}
-
 body {
   font-family: 'Anonymous Pro', monospace;
   line-height: 1.4;
@@ -398,3 +394,97 @@ legend {
   display: inline-block;
   padding: 12px 0;
 }
+
+/* TABLET */
+@media screen and (min-width: 504px) and (max-width: 1024px) {
+  .page {
+    flex-direction: column;
+    margin: 0;
+  }
+
+  main {
+    width: 85%;
+    margin: 25px 25px 0 25px;
+    order: 2;
+  }
+
+  .aside-flex-wrapper {
+    order: 1;
+    width: 100%;
+    flex-direction: column;
+    margin: 0px;
+    min-height: 100%;
+  }
+
+  aside p {
+    display: inline-block;
+  }
+
+  aside {
+    margin: 10px 25px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; 
+  }
+
+  .comment-wrapper {
+    margin-left: 25px;
+  }
+
+  .comment-flex-wrapper {
+    display: inline-block;
+    margin-bottom: 20px;
+  }
+
+  .comment-flex-wrapper textarea {
+    max-width: 450px;
+  }
+}
+
+/* MOBILE */
+@media screen and (max-width: 504px) {
+  .page {
+    flex-direction: column;
+    margin: 0;
+  }
+
+  main {
+    width: 85%;
+    margin: 25px 25px 0 25px;
+    order: 2;
+  }
+
+  .aside-flex-wrapper {
+    order: 1;
+    width: 100%;
+    flex-direction: column;
+    margin: 0px;
+    min-height: 100%;
+  }
+
+  aside p {
+    display: inline-block;
+  }
+
+  aside {
+    margin: 10px 25px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; 
+  }
+
+  .comment-wrapper {
+    margin-left: 25px;
+  }
+
+  .comment-flex-wrapper {
+    display: inline-block;
+    margin-bottom: 20px;
+  }
+
+  .comment-flex-wrapper textarea {
+    max-width: 350px;
+  }
+}
+
+
