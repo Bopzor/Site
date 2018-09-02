@@ -37,6 +37,12 @@ const Aside = (props) => {
           </NavLink>
         </p>
 
+        <p>
+          <NavLink exact to={{ pathname: `/cv`}} className="link" activeClassName="selected">
+            CV
+          </NavLink>
+        </p>
+
         {props.projects.map((p) => renderProjectLink(p))}
 
         <Admin>
