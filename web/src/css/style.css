@@ -200,6 +200,7 @@ article .a-content-overflow {
   overflow: hidden;
   position: relative;
   height: 4em;
+  padding-left: 10px;
 }
 article .a-content-overflow:after {
   content: "";
@@ -372,4 +373,28 @@ legend {
 
 .p-f-bottom-wrapper input {
   margin-bottom: 10px 0;
+}
+
+.pagination {
+  width: 95%;
+  margin: auto;
+  text-align: center;
+  border-top: 1px dotted #ccc;
+}
+
+.pagination .prev {
+  float: left;
+}
+.pagination .next {
+  float: right;
+}
+
+.pagination a i {
+  margin: 0 10px;
+  vertical-align: middle;
+}
+
+.pagination .index {
+  display: inline-block;
+  padding: 12px 0;
 }
