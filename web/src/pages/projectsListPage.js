@@ -14,7 +14,7 @@ const ProjectsListPage = (props) => (
       />
 
       <Link
-      to={{ pathname: `/projects/${p.id}` }}
+      to={{ pathname: `/project/${p.id}` }}
       className="link a-l-p-button-wrapper"
       >
         <button className="a-l-p-expend-button button">Read</button>
