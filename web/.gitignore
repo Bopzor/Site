@@ -24,3 +24,5 @@ package-lock.json
 init.sh
 .htaccess
 api/environment.php
+
+web/public/images/*.*
