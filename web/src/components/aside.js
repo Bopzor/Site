@@ -9,7 +9,7 @@ function renderProjectLink(project) {
       <p
         key={project.id}
       >
-        <a href={project.url} className="link">
+        <a href={project.url} target="_blank" className="link">
           {project.title}
         </a>
       </p>
