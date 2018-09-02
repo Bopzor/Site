@@ -55,6 +55,14 @@ class Blog extends Component {
     return displayArticles;
   }
 
+  getArticlesId() {
+    const articlesId = [];
+
+    this.state.articles.map(a => articlesId.push(a.id));
+
+    return articlesId;
+  }
+
   render() {
     const findArticle = (id) => this.state.articles.find(a => a.id === ~~id);
 
@@ -86,6 +94,7 @@ class Blog extends Component {
 
             <Route exact path='/blog/article/:id' render={(props) => (
               <ArticlePage
+                articlesId={this.getArticlesId()}
                 onRemoveArticle={(articleId) => this.handleRemoveArticle(articleId)}
                 article={findArticle(props.match.params.id)}
               />

@@ -48,6 +48,14 @@ class Site extends Component {
     this.setState({projects});
   }
 
+  getProjectsId() {
+    const projectsId = [];
+
+    this.state.projects.map(p => projectsId.push(p.id));
+
+    return projectsId;
+  }
+
   render() {
     const findProject = (id) => this.state.projects.find(p => p.id === ~~id);
 
@@ -71,6 +79,7 @@ class Site extends Component {
 
             <Route exact path='/project/:id' render={(props) => (
               <ProjectPage
+                projectsId={this.getProjectsId()}
                 project={findProject(props.match.params.id)}
                 onRemoveProject={(projectId) => this.handleRemoveProject(projectId)}
               />
