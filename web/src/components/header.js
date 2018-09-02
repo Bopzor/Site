@@ -11,7 +11,7 @@ const Header = () => (
         className="link"
         to="/"
       >
-        <h1 className="title">Title</h1>
+        <h1 className="title">Bopzor.me</h1>
       </Link>
 
       <Admin isAdmin={false}>
