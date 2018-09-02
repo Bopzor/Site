@@ -1,2 +1,5 @@
 .htaccess
 content/
+node_modules
+web/bopzor.sql
+yarn.lock
