@@ -1,6 +1,6 @@
 import { queryToServer } from './utilities.js';
 
-const BASE_API_URL = 'http://localhost/Site/api/routes'
+const BASE_API_URL = 'http://localhost/api/routes'
 
 export function getCategories(callback) {
   const url = `${BASE_API_URL}/category.php`;
