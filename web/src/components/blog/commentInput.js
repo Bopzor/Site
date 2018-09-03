@@ -63,7 +63,7 @@ class CommentInput extends Component {
                 onChange={e => this.handlePseudoChange(e)}
                 value={this.state.pseudoValue}
               />
-
+              <br/>
               <textarea
                 value={this.state.messageValue}
                 onChange={e => this.handleMessageChange(e)}
@@ -71,7 +71,7 @@ class CommentInput extends Component {
                 cols="50"
                 placeholder="Your comment"
               />
-
+              <br/>
               <button className="button" onClick={(e) => this.handleSubmitComment(e)}>Post</button>
 
           </fieldset>
