@@ -1,7 +1,7 @@
 <?php
 
 require '../classes/Category.php';
-include '../sendJSON.php';
+include '../sendResponse.php';
 
 $method = $_SERVER['REQUEST_METHOD'];
 

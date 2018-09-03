@@ -1,7 +1,10 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+ini_set('html_errors', 1);
 
 require '../classes/Project.php';
-include '../sendJSON.php';
+include '../sendResponse.php';
 
 $method = $_SERVER['REQUEST_METHOD'];
 
@@ -16,26 +19,38 @@ if ($method === 'GET') {
 
   switch ($method) {
     case 'POST':
-      $p = new Project();
-      $p->title = $_POST['title']; 
-      $p->content = $_POST['content'];
-      $p->repo = $_POST['repo'];
-      $p->url = $_POST['url'];
 
-      if(isset($_POST['id'])) {
-        $p->id = $_POST['id'];
-        $project = $p->updateProject();
+      try {
+        if ($_POST['title'] === '' || $_POST['content'] === '') {
+          throw new Exception('Missing Field', 400); 
+        }
+
+        $p = new Project();
+
+        $p->title = $_POST['title']; 
+        $p->content = $_POST['content'];
+        $p->repo = $_POST['repo'];
+        $p->url = $_POST['url'];
+
+        if(isset($_POST['id'])) {
+          $p->id = $_POST['id'];
+          $project = $p->updateProject();
+
+          sendJSON($project);
+          
+          break;
+        }
+        
+        $project = $p->createProject();
 
         sendJSON($project);
-        
+
+        break;
+
+      } catch (Exception $e) {
+        handleErrors($e->getCode());
         break;
       }
-      
-      $project = $p->createProject();
-
-      sendJSON($project);
-
-      break;
 
     case 'DELETE':
       $p = new Project();

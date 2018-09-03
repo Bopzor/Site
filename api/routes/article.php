@@ -1,7 +1,7 @@
 <?php
 
 require '../classes/Article.php';
-include '../sendJSON.php';
+include '../sendResponse.php';
 
 $method = $_SERVER['REQUEST_METHOD'];
 
@@ -16,25 +16,36 @@ if ($method === 'GET') {
 
   switch ($method) {
     case 'POST':
-      $a = new Article();
-      $a->title = $_POST['title']; 
-      $a->content = $_POST['content'];
-      $a->categoriesId = $_POST['categoriesId'];
 
-      if(isset($_POST['id'])) {
-        $a->id = $_POST['id'];
-        $article = $a->updateArticle();
+      try {
+        if ($_POST['title'] === '' && $_POST['content'] === '') {
+          throw new Exception('Missing fileds', 400);
+        }
+
+        $a = new Article();
+        $a->title = $_POST['title']; 
+        $a->content = $_POST['content'];
+        $a->categoriesId = $_POST['categoriesId'];
+
+        if(isset($_POST['id'])) {
+          $a->id = $_POST['id'];
+          $article = $a->updateArticle();
+
+          sendJSON($article);
+          
+          break;
+        }
+        
+        $article = $a->createArticle();
 
         sendJSON($article);
-        
+
+        break;
+
+      } catch (Exception $e) {
+        handleErrors($e->getCode());
         break;
       }
-      
-      $article = $a->createArticle();
-
-      sendJSON($article);
-
-      break;
 
     case 'DELETE':
       $a = new Article();

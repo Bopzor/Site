@@ -1,7 +1,7 @@
 <?php
 
 require '../classes/Comment.php';
-include '../sendJSON.php';
+include '../sendResponse.php';
 
 $method = $_SERVER['REQUEST_METHOD'];
 
@@ -14,14 +14,23 @@ if ($method === 'GET') {
   sendJSON($comments);
 
 } elseif ($method === 'POST'){
-  $c = new Comment();
-  $c->nick = $_POST['nick'];
-  $c->content = $_POST['content'];
-  $c->articleId = $_POST['articleId'];
+  try {
+    if ($_POST['nick'] === '' && $_POST['content'] === '') {
+      throw new Exception('Missing fileds', 400);
+    }
 
-  $comment = $c->createComment();
+    $c = new Comment();
+    $c->nick = $_POST['nick'];
+    $c->content = $_POST['content'];
+    $c->articleId = $_POST['articleId'];
 
-  sendJSON($comment);
+    $comment = $c->createComment();
+
+    sendJSON($comment);
+    
+  } catch(Exception $e) {
+    handleErrors($e->getCode());
+  }
 }
 
 
