@@ -72,7 +72,7 @@ class ProjectForm extends Component {
     try {
       const result = this.formValidator();
 
-      if (result !== {titleState: '', contentState: ''}) {
+      if (result.titleState === 'error' || result.contentState === 'error') {
         throw result;
       }
 
@@ -86,8 +86,17 @@ class ProjectForm extends Component {
         }
 
         updateProject(body, (result) => {
-          this.props.onSaveProject(result);
-          this.setState({redirect: `/project/${result.id}`});
+          try {
+            if (result.message === 'error') {
+              throw {titleState: result.message, contentState: result.message};
+            }
+            
+            this.props.onSaveProject(result);
+            this.setState({redirect: `/project/${result.id}`});
+
+          } catch(e) {
+            this.handleErrors(e);
+          }
         });
 
       } else {
@@ -100,8 +109,17 @@ class ProjectForm extends Component {
         }
 
         postProject(body, (result) => {
-          this.props.onSaveProject(result);
-          this.setState({redirect: `/project/${result.id}`});
+          try {
+            if (result.message === 'error') {
+              throw {titleState: result.message, contentState: result.message};
+            }
+
+            this.props.onSaveProject(result);
+            this.setState({redirect: `/project/${result.id}`});
+            
+          } catch(e) {
+            this.handleErrors(e);
+          }
         });
       }
       
@@ -121,6 +139,18 @@ class ProjectForm extends Component {
     if (this.state.redirect) {
       return <Redirect to={this.state.redirect} />
     }
+  }
+
+  handleResetForm(e) {
+    e.preventDefault();
+
+    this.setState({
+      titleValue: '',
+      repoValue: '',
+      urlValue: '',
+    });
+
+    this.textareaRef.current.value = '';
   }
 
   render() {

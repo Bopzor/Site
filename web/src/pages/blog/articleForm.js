@@ -92,7 +92,7 @@ class ArticleForm extends React.Component {
     try {
       const result = this.formValidator();
 
-      if (result !== {titleState: '', contentState: ''}) {
+      if (result.titleState === 'error' || result.contentState === 'error') {
         throw result;
       }
 
@@ -117,8 +117,17 @@ class ArticleForm extends React.Component {
         }
 
         postArticle(body, (result) => {
-          this.props.onSaveArticle(result);
-          this.setState({redirect: `/blog/article/${result.id}`});
+          try {
+            if (result.message === 'error') {
+              throw {titleState: result.message, contentState: result.message};
+            }
+            
+            this.props.onSaveArticle(result);
+            this.setState({redirect: `/blog/article/${result.id}`});
+            
+          } catch(e) {
+            this.handleErrors(e);
+          }
         });
       }
       

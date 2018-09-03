@@ -5,6 +5,8 @@ import { State } from 'markup-it';
 import markdown from 'markup-it/lib/markdown';
 import html from 'markup-it/lib/html';
 
+import '../../css/post.css'
+
 import Admin from '../admin.js';
 
 const renderCategory = (category, articleId) => (

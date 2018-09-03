@@ -51,7 +51,7 @@ class CommentInput extends Component {
     try {
       const result = this.formValidator();
 
-      if (result !== {pseudoState: '',messageState: ''}) {
+      if (result.pseudoState === 'error' || result.messageState === 'error') {
         throw result;
       }
 
@@ -61,7 +61,18 @@ class CommentInput extends Component {
         articleId: this.state.articleId
       }
 
-      postComment(body, (result) => this.props.callback(result));
+      postComment(body, (result) => {
+        try {
+          if (result.message === 'error') {
+            throw {pseudoState: result.message, messageState: result.message};
+          }
+          
+          this.props.callback(result)
+            
+          } catch(e) {
+            this.handleErrors(e);
+          }
+      });
 
       this.handleResetForm(e);
       
