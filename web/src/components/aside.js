@@ -14,6 +14,16 @@ function renderProjectLink(project) {
         </a>
       </p>
     );    
+  } else if (!project.url.match(/[a-z]/i)) {
+    return (
+      <p
+        key={project.id}
+      >
+        <NavLink to={{ pathname: `/project/${project.id}`}} className="link" activeClassName="selected">
+          {project.title}
+        </NavLink>
+      </p>
+    );
   }
 
   return (

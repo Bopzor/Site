@@ -22,14 +22,32 @@ const createMarkeup = (content) => {
 
 
 const createLinks = (project) => {
+  let link = (
+    <a href={project.url} target="_blank" className="link">
+      <i className="fas fa-globe fa-2x"></i>
+    </a>
+  );
+
+  if (!project.url.match(/[a-z]/i)) {
+    link = <i className="fas fa-globe fa-2x disabled"></i>;
+
+  } else if (!project.url.match(/^(https?:\/\/)/)) {
+    link = (
+      <Link
+        to={{ pathname: `/${project.url}` }}
+        className="link a-title"
+      >
+        <i className="fas fa-globe fa-2x"></i>
+      </Link>
+    );
+  }
+
   return (
     <div className="ressources">
 
       <div className="tooltip">
         <span className="tooltip-text">Site</span>
-        <a href={project.url} target="_blank" className="link">
-          <i className="fas fa-globe fa-2x"></i>
-        </a>
+        {link}
       </div>
       <div className="tooltip">
         <span className="tooltip-text">Github</span>
