@@ -334,6 +334,12 @@ legend {
 
 .f-input-wrapper input {
   border: 1px solid #EEE;
+  margin-bottom: 5px; 
+}
+
+.f-input-wrapper .error {
+  border: 1px solid #EDAE49;
+  border-radius: 5px;
 }
 
 .f-input-wrapper select {

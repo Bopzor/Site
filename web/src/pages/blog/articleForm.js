@@ -70,24 +70,46 @@ class ArticleForm extends React.Component {
     })
   }
 
+  formValidator() {
+    const result = {};
+    if (!(this.state.titleValue !== undefined && this.state.titleValue !== '')) {
+      result['titleState'] = 'error';
+    } else {
+      result['titleState'] = '';
+    }
+    if (!(this.textareaRef.current.value !== undefined && this.textareaRef.current.value !== '')) {
+      result['contentState'] = 'error';
+    } else {
+      result['contentState'] = '';
+    }
+
+    return result;
+  }
+
   handleSubmitArticle(e) {
     e.preventDefault()
 
-    if (this.props.article) {
-      const body = {
-        id: this.props.article.id,
-        title: this.state.titleValue,
-        content: this.textareaRef.current.value,
-        categoriesId: this.state.selectValues,
+    try {
+      const result = this.formValidator();
+
+      if (result !== {titleState: '', contentState: ''}) {
+        throw result;
       }
 
-      updateArticle(body, (result) => {
-        this.props.onSaveArticle(result);
-        this.setState({redirect: `/blog/article/${result.id}`});
-      });
+      if (this.props.article) {
+        const body = {
+          id: this.props.article.id,
+          title: this.state.titleValue,
+          content: this.textareaRef.current.value,
+          categoriesId: this.state.selectValues,
+        }
 
-    } else {
-      if (this.state.titleValue !== undefined && this.state.selectValues.length > 0) {
+        updateArticle(body, (result) => {
+          this.props.onSaveArticle(result);
+          this.setState({redirect: `/blog/article/${result.id}`});
+        });
+
+      } else {
         const body = {
           title: this.state.titleValue,
           content: this.textareaRef.current.value,
@@ -99,8 +121,17 @@ class ArticleForm extends React.Component {
           this.setState({redirect: `/blog/article/${result.id}`});
         });
       }
+      
+    } catch (e) {
+      this.handleErrors(e);
     }
+  }
 
+  handleErrors(e) {
+    this.setState({
+      titleState: e.titleState,
+      contentState: e.contentState,
+    });
   }
 
   handleRedirect() {
@@ -125,13 +156,20 @@ class ArticleForm extends React.Component {
             <div className="f-input-wrapper">
 
               <input
+                className={this.state.titleState}
                 type="text"
                 placeholder="Title"
                 onChange={e => this.handleTitleChange(e)}
                 value={this.state.titleValue}
               />
 
-              <textarea id="mdeditor" defaultValue={contentValue} ref={this.textareaRef} />
+              <div className={this.state.contentState}>
+                <textarea
+                  id="mdeditor"
+                  defaultValue={contentValue}
+                  ref={this.textareaRef}
+                />
+              </div>
 
               <label>Categories: </label>
 

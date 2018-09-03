@@ -50,25 +50,48 @@ class ProjectForm extends Component {
     this.setState({urlValue: e.target.value});
   }
 
+  formValidator() {
+    const result = {};
+    if (!(this.state.titleValue !== undefined && this.state.titleValue !== '')) {
+      result['titleState'] = 'error';
+    } else {
+      result['titleState'] = '';
+    }
+    if (!(this.textareaRef.current.value !== undefined && this.textareaRef.current.value !== '')) {
+      result['contentState'] = 'error';
+    } else {
+      result['contentState'] = '';
+    }
+
+    return result;
+  }
+
   handleSubmitProject(e) {
     e.preventDefault()
 
-    if (this.props.project) {
-      const body = {
-        id: this.props.project.id,
-        title: this.state.titleValue,
-        content: this.textareaRef.current.value,
-        repoValue: this.state.repoValue,
-        urlValue: this.state.urlValue,
+    try {
+      const result = this.formValidator();
+
+      if (result !== {titleState: '', contentState: ''}) {
+        throw result;
       }
 
-      updateProject(body, (result) => {
-        this.props.onSaveProject(result);
-        this.setState({redirect: `/project/${result.id}`});
-      });
+      if (this.props.project) {
+        const body = {
+          id: this.props.project.id,
+          title: this.state.titleValue,
+          content: this.textareaRef.current.value,
+          repoValue: this.state.repoValue,
+          urlValue: this.state.urlValue,
+        }
 
-    } else {
-      if (this.state.titleValue !== undefined) {
+        updateProject(body, (result) => {
+          this.props.onSaveProject(result);
+          this.setState({redirect: `/project/${result.id}`});
+        });
+
+      } else {
+
         const body = {
           title: this.state.titleValue,
           content: this.textareaRef.current.value,
@@ -81,8 +104,17 @@ class ProjectForm extends Component {
           this.setState({redirect: `/project/${result.id}`});
         });
       }
+      
+    } catch(e) {
+      this.handleErrors(e);
     }
+  }
 
+  handleErrors(e) {
+    this.setState({
+      titleState: e.titleState,
+      contentState: e.contentState,
+    });
   }
 
   handleRedirect() {
@@ -107,13 +139,24 @@ class ProjectForm extends Component {
             <div className="f-input-wrapper">
 
               <input
+                className={this.state.titleState}
+                name="title"
                 type="text"
                 placeholder="Title"
                 onChange={e => this.handleTitleChange(e)}
                 value={this.state.titleValue}
+                required
               />
 
-              <textarea id="mdeditor" defaultValue={contentValue} ref={this.textareaRef} />
+              <div className={this.state.contentState}>
+                <textarea
+                  name="content"
+                  id="mdeditor"
+                  defaultValue={contentValue}
+                  ref={this.textareaRef}
+                  required
+                />
+              </div>
 
               <div className="p-f-bottom-wrapper">
                 <input 
@@ -123,7 +166,7 @@ class ProjectForm extends Component {
                   value={this.state.repoValue}
                 />
                 <input 
-                  type="url"
+                  type="text"
                   placeholder="url"
                   onChange={e => this.handleUrlChange(e)}
                   value={this.state.urlValue}
