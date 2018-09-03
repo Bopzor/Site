@@ -29,10 +29,32 @@ class CommentInput extends Component {
     })
   }
 
+  formValidator() {
+    const result = {};
+    if (!(this.state.pseudoValue !== undefined && this.state.pseudoValue !== '')) {
+      result['pseudoState'] = 'error';
+    } else {
+      result['pseudoState'] = '';
+    }
+    if (!(this.state.messageValue !== undefined && this.state.messageValue !== '')) {
+      result['messageState'] = 'error';
+    } else {
+      result['messageState'] = '';
+    }
+
+    return result;    
+  }
+
   handleSubmitComment(e) {
     e.preventDefault();
 
-    if (this.state.pseudoValue !== undefined && this.state.messageValue !== undefined) {
+    try {
+      const result = this.formValidator();
+
+      if (result !== {pseudoState: '',messageState: ''}) {
+        throw result;
+      }
+
       const body = {
         nick: this.state.pseudoValue,
         content: this.state.messageValue,
@@ -40,9 +62,19 @@ class CommentInput extends Component {
       }
 
       postComment(body, (result) => this.props.callback(result));
-    }
 
-    this.handleResetForm(e);
+      this.handleResetForm(e);
+      
+    } catch (e) {
+      this.handleErrors(e);
+    }
+  }
+
+  handleErrors(e) {
+    this.setState({
+      pseudoState: e.pseudoState,
+      messageState: e.messageState,
+    });
   }
 
   render() {
@@ -57,6 +89,7 @@ class CommentInput extends Component {
               <legend>New comment</legend>
 
               <input
+                className={this.state.pseudoState}
                 type="text"
                 name="title"
                 placeholder="Nick"
@@ -64,7 +97,9 @@ class CommentInput extends Component {
                 value={this.state.pseudoValue}
               />
               <br/>
+
               <textarea
+                className={this.state.messageState}
                 value={this.state.messageValue}
                 onChange={e => this.handleMessageChange(e)}
                 rows="10"

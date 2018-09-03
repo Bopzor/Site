@@ -337,7 +337,7 @@ legend {
   margin-bottom: 5px; 
 }
 
-.f-input-wrapper .error {
+.f-input-wrapper .error, .error {
   border: 1px solid #EDAE49;
   border-radius: 5px;
 }

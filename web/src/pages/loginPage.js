@@ -14,26 +14,46 @@ class LoginPage extends Component {
   static getDerivedStateFromProps(props, state) {
     if(state.admin !== props.admin) {
       return {redirect: '/'};
-    };
+    }
+    
+    return null;
   }
 
   handleChange(e) {
     this.setState({value: e.target.value});
   }
 
+  formValidator() {
+    if (this.state.value !== undefined && this.state.value !== '') {
+      return true;
+    }
+
+    return false;
+  }
+
   handleLogin(e) {
     e.preventDefault();
 
-    sha256(this.state.value);
+    try {
+      if (!this.formValidator()) {
+        throw 'error';
+      }
 
-    let hash = sha256.create();
-    hash.update(this.state.value);
-    hash.hex();
+      sha256(this.state.value);
 
-    localStorage.setItem('token', hash);
+      let hash = sha256.create();
+      hash.update(this.state.value);
+      hash.hex();
 
-    this.setState({value: ''});
-    this.props.onSubmitLog();
+      localStorage.setItem('token', hash);
+
+      this.setState({value: ''});
+      this.props.onSubmitLog();
+
+    } catch (err) {
+      this.handleErrors(err);
+    }
+
   }
 
   handleLogout(e) {
@@ -43,6 +63,10 @@ class LoginPage extends Component {
 
     this.setState({value: ''});
     this.props.onSubmitLog();
+  }
+
+  handleErrors(e) {
+    this.setState({valueState: e});
   }
 
   handleRedirect() {
@@ -75,6 +99,7 @@ class LoginPage extends Component {
               <label>Login: </label>
 
               <input
+                className={this.state.valueState}
                 type="password"
                 value={this.state.value}
                 required
