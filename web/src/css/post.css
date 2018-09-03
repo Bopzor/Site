@@ -91,5 +91,8 @@ div .header-project-full h2 {
     opacity: 1;
 }
 
+.disabled {
+  opacity: 0.2;
+}
 
 
