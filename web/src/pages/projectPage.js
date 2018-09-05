@@ -47,6 +47,8 @@ const getActualIndex = (projectId, projects) => {
 }
 
 const ProjectPage = (props) => {
+  window.scrollTo(0,0);
+
   if (!props.project) {
     return null;
   }
@@ -63,7 +65,7 @@ const ProjectPage = (props) => {
       <div className="pagination">
         {getPreviousProjectLink(props.project.id, props.projectsId)}
 
-        <span className="index">{getActualIndex(props.project.id, props.projectsId)}</span> 
+        <span className="index">{getActualIndex(props.project.id, props.projectsId)}</span>
 
         {getNextProjectLink(props.project.id, props.projectsId)}
 

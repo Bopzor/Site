@@ -49,6 +49,8 @@ const getActualIndex = (articleId, articles) => {
 
 
 const ArticlePage = (props) => {
+  window.scrollTo(0,0);
+
   if (!props.article) {
     return null;
   }
