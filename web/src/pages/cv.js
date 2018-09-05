@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import '../css/style.css';
 
 const CV = () => {
   return (
@@ -8,7 +9,11 @@ const CV = () => {
       width="750px"
       height="750px"
     >
-      <a href="http://bopzor.me/images/cv-bopzor.me.pdf">Voir le CV</a>
+      <a href="http://bopzor.me/images/cv-bopzor.me.pdf">
+        <page className="cv">
+          <img src="http://bopzor.me/cv-bopzor.me.png" className="cv-img" alt="CV"/>
+        </page>
+      </a>
     </object>
   );
 }
