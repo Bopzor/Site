@@ -36,7 +36,9 @@ class ProjectForm extends Component {
   }
 
   componentDidUpdate() {
-    window.scrollTo(0,0);
+    if (this.state.titleState === 'eror' || this.state.contentState === 'error') {
+      window.scrollTo(0,0);
+    }
   }
 
   handleTitleChange(e) {
