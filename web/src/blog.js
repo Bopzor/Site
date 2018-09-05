@@ -26,7 +26,7 @@ class Blog extends Component {
   onRemoveArticle(articleId) {
     let articles = this.state.articles.slice();
     const idx = articles.findIndex(a => a.id === ~~articleId);
-    
+
     articles.splice(idx, 1);
 
     this.setState({articles});
@@ -49,10 +49,22 @@ class Blog extends Component {
     this.setState({articles});
   }
 
-  filterArticlesByCategory(categoryId) {
-    const displayArticles = this.state.articles.filter(a => a.category_id.split(',').includes(categoryId));
+    filterArticlesByCategory(categoryId) {
+    let categoryName = null;
+    let displayArticles = [];
+
+    for (let i = 0; i < this.state.categories.length; i++) {
+
+      if (this.state.categories[i].id == categoryId) {
+        categoryName = this.state.categories[i].name;
+
+        displayArticles = this.state.articles.filter(a => a.category_name.split(',').includes(categoryName));
+      }
+
+    }
 
     return displayArticles;
+
   }
 
   getArticlesId() {
