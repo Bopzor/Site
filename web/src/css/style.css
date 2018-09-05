@@ -120,7 +120,7 @@ aside {
   position: sticky;
   top: 250px;
   left: 75%;
-  text-align: right; 
+  text-align: right;
 }
 
 aside i {
@@ -188,7 +188,7 @@ article .a-content {
 }
 
 article .a-details-wrapper {
-  padding-left: 30px; 
+  padding-left: 30px;
 }
 
 article .a-content-overflow {
@@ -230,7 +230,7 @@ article .a-admin-tools {
 
 .a-l-p-wrapper {
   margin-bottom: 50px;
-  display: flex; 
+  display: flex;
   flex-direction: column;
   align-items: space-between;
 }
@@ -306,7 +306,7 @@ article .a-admin-tools {
 }
 
 .form-container {
-  min-height: 450px; 
+  min-height: 450px;
 }
 
 legend {
@@ -334,7 +334,7 @@ legend {
 
 .f-input-wrapper input {
   border: 1px solid #EEE;
-  margin-bottom: 5px; 
+  margin-bottom: 5px;
 }
 
 .f-input-wrapper .error, .error {
@@ -401,6 +401,25 @@ legend {
   padding: 12px 0;
 }
 
+page.cv {
+  padding: 10px;
+  background: white;
+  display: block;
+  margin: auto;
+  margin-bottom: 0.5cm;
+  box-shadow: 0 0 0.5cm rgba(0,0,0,0.5);
+}
+
+page[size="A4"] {
+  width: 21cm;
+  height: 29.7cm;
+}
+
+img.cv-img {
+  max-width: 100%;
+  height: auto;
+}
+
 /* TABLET */
 @media screen and (min-width: 504px) and (max-width: 1024px) {
   .page {
@@ -430,7 +449,7 @@ legend {
     margin: 10px 25px;
     display: flex;
     flex-direction: row;
-    justify-content: space-between; 
+    justify-content: space-between;
   }
 
   .comment-wrapper {
@@ -449,6 +468,10 @@ legend {
 
 /* MOBILE */
 @media screen and (max-width: 504px) {
+  .login  {
+    display: none;
+  }
+
   .page {
     flex-direction: column;
     margin: 0;
@@ -476,7 +499,7 @@ legend {
     margin: 10px 25px;
     display: flex;
     flex-direction: row;
-    justify-content: space-between; 
+    justify-content: space-between;
   }
 
   .comment-wrapper {
