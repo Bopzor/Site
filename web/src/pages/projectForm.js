@@ -35,7 +35,7 @@ class ProjectForm extends Component {
     });
   }
 
-  static getDerivedStateFromProps() {
+  componentDidUpdate() {
     window.scrollTo(0,0);
   }
 
