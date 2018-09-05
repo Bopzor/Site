@@ -62,16 +62,16 @@ const ArticlePage = (props) => {
         showAll={true}
       />
 
-      <Comments articleId={props.article.id} />
-
       <div className="pagination">
         {getPreviousArticleLink(props.article.id, props.articlesId)}
 
-        <span className="index">{getActualIndex(props.article.id, props.articlesId)}</span> 
+        <span className="index">{getActualIndex(props.article.id, props.articlesId)}</span>
 
         {getNextArticleLink(props.article.id, props.articlesId)}
 
       </div>
+
+      <Comments articleId={props.article.id} />
 
     </div>
   )
