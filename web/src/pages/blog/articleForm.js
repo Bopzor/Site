@@ -3,7 +3,7 @@ import { Redirect } from 'react-router';
 import MdEditor from '../../mdeditor.js';
 
 import { postArticle, updateArticle } from '../../blogActionsToAPI.js';
-import Admin from '../components/admin.js';
+import Admin from '../../components/admin.js';
 
 function renderCategoriesOptions(category) {
   return (
