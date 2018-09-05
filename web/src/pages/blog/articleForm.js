@@ -155,58 +155,62 @@ class ArticleForm extends React.Component {
     const contentValue = this.props.article ? this.props.article.content : undefined;
 
     return (
-      <Admin>
-        <div className="form-container">
+      <div>
+        <Admin>
+          <div className="form-container">
 
-          <form>
+            <form>
 
-            <fieldset>
+              <fieldset>
 
-              <legend>New article</legend>
+                <legend>New article</legend>
 
-              <div className="f-input-wrapper">
+                <div className="f-input-wrapper">
 
-                <input
-                  className={this.state.titleState}
-                  type="text"
-                  placeholder="Title"
-                  onChange={e => this.handleTitleChange(e)}
-                  value={this.state.titleValue}
-                />
-
-                <div className={this.state.contentState}>
-                  <textarea
-                    id="mdeditor"
-                    defaultValue={contentValue}
-                    ref={this.textareaRef}
+                  <input
+                    className={this.state.titleState}
+                    type="text"
+                    placeholder="Title"
+                    onChange={e => this.handleTitleChange(e)}
+                    value={this.state.titleValue}
                   />
-                </div>
 
-                <label>Categories: </label>
+                  <div className={this.state.contentState}>
+                    <textarea
+                      id="mdeditor"
+                      defaultValue={contentValue}
+                      ref={this.textareaRef}
+                    />
+                  </div>
 
-                <div className="f-bottom-wrapper">
+                  <label>Categories: </label>
 
-                  <select multiple={true} value={this.state.selectValues} onChange={e => this.handleSelectChange(e)}>
-                    {this.props.categories.map(category => renderCategoriesOptions(category))};
-                  </select>
+                  <div className="f-bottom-wrapper">
 
-                  <div className="f-buttons">
-                    <button className="button" onClick={(e) => this.handleSubmitArticle(e)}>{submitValue}</button>
-                    <button className="button" onClick={e => this.handleResetForm(e)}>Reset</button>
+                    <select multiple={true} value={this.state.selectValues} onChange={e => this.handleSelectChange(e)}>
+                      {this.props.categories.map(category => renderCategoriesOptions(category))};
+                    </select>
+
+                    <div className="f-buttons">
+                      <button className="button" onClick={(e) => this.handleSubmitArticle(e)}>{submitValue}</button>
+                      <button className="button" onClick={e => this.handleResetForm(e)}>Reset</button>
+                    </div>
+
                   </div>
 
                 </div>
 
-              </div>
+                  {this.handleRedirect()}
 
-                {this.handleRedirect()}
+              </fieldset>
 
-            </fieldset>
+            </form>
 
-          </form>
+          </div>
+        </Admin>
 
-        </div>
-      </Admin>
+        <Redirect to='/' />
+      </div>
     )
   }
 }

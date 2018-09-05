@@ -159,68 +159,73 @@ class ProjectForm extends Component {
     const contentValue = this.props.project ? this.props.project.content : undefined;
 
     return (
-      <Admin>
-        <div className="form-container">
+      <div>
 
-          <form>
+        <Admin>
+          <div className="form-container">
 
-            <fieldset>
+            <form>
 
-              <legend>New project</legend>
+              <fieldset>
 
-              <div className="f-input-wrapper">
+                <legend>New project</legend>
 
-                <input
-                  className={this.state.titleState}
-                  name="title"
-                  type="text"
-                  placeholder="Title"
-                  onChange={e => this.handleTitleChange(e)}
-                  value={this.state.titleValue}
-                  required
-                />
+                <div className="f-input-wrapper">
 
-                <div className={this.state.contentState}>
-                  <textarea
-                    name="content"
-                    id="mdeditor"
-                    defaultValue={contentValue}
-                    ref={this.textareaRef}
+                  <input
+                    className={this.state.titleState}
+                    name="title"
+                    type="text"
+                    placeholder="Title"
+                    onChange={e => this.handleTitleChange(e)}
+                    value={this.state.titleValue}
                     required
                   />
-                </div>
 
-                <div className="p-f-bottom-wrapper">
-                  <input
-                    type="url"
-                    placeholder="git repository"
-                    onChange={e => this.handleRepoChange(e)}
-                    value={this.state.repoValue}
-                  />
-                  <input
-                    type="text"
-                    placeholder="url"
-                    onChange={e => this.handleUrlChange(e)}
-                    value={this.state.urlValue}
-                  />
+                  <div className={this.state.contentState}>
+                    <textarea
+                      name="content"
+                      id="mdeditor"
+                      defaultValue={contentValue}
+                      ref={this.textareaRef}
+                      required
+                    />
+                  </div>
 
-                  <div className="f-buttons">
-                    <button className="button" onClick={(e) => this.handleSubmitProject(e)}>{submitValue}</button>
-                    <button className="button" onClick={e => this.handleResetForm(e)}>Reset</button>
+                  <div className="p-f-bottom-wrapper">
+                    <input
+                      type="url"
+                      placeholder="git repository"
+                      onChange={e => this.handleRepoChange(e)}
+                      value={this.state.repoValue}
+                    />
+                    <input
+                      type="text"
+                      placeholder="url"
+                      onChange={e => this.handleUrlChange(e)}
+                      value={this.state.urlValue}
+                    />
+
+                    <div className="f-buttons">
+                      <button className="button" onClick={(e) => this.handleSubmitProject(e)}>{submitValue}</button>
+                      <button className="button" onClick={e => this.handleResetForm(e)}>Reset</button>
+                    </div>
+
                   </div>
 
                 </div>
 
-              </div>
+                  {this.handleRedirect()}
 
-                {this.handleRedirect()}
+              </fieldset>
 
-            </fieldset>
+            </form>
 
-          </form>
+          </div>
+        </Admin>
 
-        </div>
-      </Admin>
+        <Redirect to='/' />
+      </div>
     )
   }
 }
