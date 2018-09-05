@@ -209,7 +209,9 @@ class ArticleForm extends React.Component {
           </div>
         </Admin>
 
-        <Redirect to='/' />
+        <Admin isAdmin={false}>
+          <Redirect to='/' />
+        </Admin>
       </div>
     )
   }
