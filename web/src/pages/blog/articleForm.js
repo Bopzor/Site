@@ -3,6 +3,7 @@ import { Redirect } from 'react-router';
 import MdEditor from '../../mdeditor.js';
 
 import { postArticle, updateArticle } from '../../blogActionsToAPI.js';
+import Admin from '../components/admin.js';
 
 function renderCategoriesOptions(category) {
   return (
@@ -32,7 +33,7 @@ class ArticleForm extends React.Component {
 
   componentDidMount() {
     const md = new MdEditor('#mdeditor', {
-      uploader: 'http://localhost/api/routes/uploader.php',
+      uploader: 'https://bopzor.me/api/routes/uploader.php',
       preview: true,
       images: [],
     });
@@ -48,14 +49,14 @@ class ArticleForm extends React.Component {
 
   handleSelectChange(e) {
     const values = this.state.selectValues.slice();
-    const idx = values.indexOf(e.target.value); 
+    const idx = values.indexOf(e.target.value);
 
     if (idx !== - 1) {
       values.splice(idx, 1);
     } else {
       values.push(e.target.value);
     }
-    
+
     this.setState({selectValues: values});
 
   }
@@ -121,16 +122,16 @@ class ArticleForm extends React.Component {
             if (result.message === 'error') {
               throw {titleState: result.message, contentState: result.message};
             }
-            
+
             this.props.onSaveArticle(result);
             this.setState({redirect: `/blog/article/${result.id}`});
-            
+
           } catch(e) {
             this.handleErrors(e);
           }
         });
       }
-      
+
     } catch (e) {
       this.handleErrors(e);
     }
@@ -154,56 +155,58 @@ class ArticleForm extends React.Component {
     const contentValue = this.props.article ? this.props.article.content : undefined;
 
     return (
-      <div className="form-container">
-        
-        <form>
+      <Admin>
+        <div className="form-container">
 
-          <fieldset>
-              
-            <legend>New article</legend>
+          <form>
 
-            <div className="f-input-wrapper">
+            <fieldset>
 
-              <input
-                className={this.state.titleState}
-                type="text"
-                placeholder="Title"
-                onChange={e => this.handleTitleChange(e)}
-                value={this.state.titleValue}
-              />
+              <legend>New article</legend>
 
-              <div className={this.state.contentState}>
-                <textarea
-                  id="mdeditor"
-                  defaultValue={contentValue}
-                  ref={this.textareaRef}
+              <div className="f-input-wrapper">
+
+                <input
+                  className={this.state.titleState}
+                  type="text"
+                  placeholder="Title"
+                  onChange={e => this.handleTitleChange(e)}
+                  value={this.state.titleValue}
                 />
-              </div>
 
-              <label>Categories: </label>
+                <div className={this.state.contentState}>
+                  <textarea
+                    id="mdeditor"
+                    defaultValue={contentValue}
+                    ref={this.textareaRef}
+                  />
+                </div>
 
-              <div className="f-bottom-wrapper">
+                <label>Categories: </label>
 
-                <select multiple={true} value={this.state.selectValues} onChange={e => this.handleSelectChange(e)}>
-                  {this.props.categories.map(category => renderCategoriesOptions(category))};
-                </select>
+                <div className="f-bottom-wrapper">
 
-                <div className="f-buttons">
-                  <button className="button" onClick={(e) => this.handleSubmitArticle(e)}>{submitValue}</button>
-                  <button className="button" onClick={e => this.handleResetForm(e)}>Reset</button>
+                  <select multiple={true} value={this.state.selectValues} onChange={e => this.handleSelectChange(e)}>
+                    {this.props.categories.map(category => renderCategoriesOptions(category))};
+                  </select>
+
+                  <div className="f-buttons">
+                    <button className="button" onClick={(e) => this.handleSubmitArticle(e)}>{submitValue}</button>
+                    <button className="button" onClick={e => this.handleResetForm(e)}>Reset</button>
+                  </div>
+
                 </div>
 
               </div>
-              
-            </div>
 
-              {this.handleRedirect()}
+                {this.handleRedirect()}
 
-          </fieldset>
+            </fieldset>
 
-        </form>
+          </form>
 
-      </div>
+        </div>
+      </Admin>
     )
   }
 }

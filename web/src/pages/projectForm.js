@@ -3,6 +3,7 @@ import { Redirect } from 'react-router';
 import MdEditor from '../mdeditor.js';
 
 import { updateProject, postProject } from '../actionsToAPI.js';
+import Admin from '../components/admin.js';
 
 class ProjectForm extends Component {
   constructor(props) {
@@ -28,7 +29,7 @@ class ProjectForm extends Component {
 
   componentDidMount() {
     const md = new MdEditor('#mdeditor', {
-      uploader: 'http://localhost/api/routes/uploader.php',
+      uploader: 'https://bopzor.me/api/routes/uploader.php',
       preview: true,
       images: [],
     });
@@ -90,7 +91,7 @@ class ProjectForm extends Component {
             if (result.message === 'error') {
               throw {titleState: result.message, contentState: result.message};
             }
-            
+
             this.props.onSaveProject(result);
             this.setState({redirect: `/project/${result.id}`});
 
@@ -116,13 +117,13 @@ class ProjectForm extends Component {
 
             this.props.onSaveProject(result);
             this.setState({redirect: `/project/${result.id}`});
-            
+
           } catch(e) {
             this.handleErrors(e);
           }
         });
       }
-      
+
     } catch(e) {
       this.handleErrors(e);
     }
@@ -158,66 +159,68 @@ class ProjectForm extends Component {
     const contentValue = this.props.project ? this.props.project.content : undefined;
 
     return (
-      <div className="form-container">
-        
-        <form>
+      <Admin>
+        <div className="form-container">
 
-          <fieldset>
-              
-            <legend>New project</legend>
+          <form>
 
-            <div className="f-input-wrapper">
+            <fieldset>
 
-              <input
-                className={this.state.titleState}
-                name="title"
-                type="text"
-                placeholder="Title"
-                onChange={e => this.handleTitleChange(e)}
-                value={this.state.titleValue}
-                required
-              />
+              <legend>New project</legend>
 
-              <div className={this.state.contentState}>
-                <textarea
-                  name="content"
-                  id="mdeditor"
-                  defaultValue={contentValue}
-                  ref={this.textareaRef}
+              <div className="f-input-wrapper">
+
+                <input
+                  className={this.state.titleState}
+                  name="title"
+                  type="text"
+                  placeholder="Title"
+                  onChange={e => this.handleTitleChange(e)}
+                  value={this.state.titleValue}
                   required
                 />
-              </div>
 
-              <div className="p-f-bottom-wrapper">
-                <input 
-                  type="url"
-                  placeholder="git repository"
-                  onChange={e => this.handleRepoChange(e)}
-                  value={this.state.repoValue}
-                />
-                <input 
-                  type="text"
-                  placeholder="url"
-                  onChange={e => this.handleUrlChange(e)}
-                  value={this.state.urlValue}
-                />
-                
-                <div className="f-buttons">
-                  <button className="button" onClick={(e) => this.handleSubmitProject(e)}>{submitValue}</button>
-                  <button className="button" onClick={e => this.handleResetForm(e)}>Reset</button>
+                <div className={this.state.contentState}>
+                  <textarea
+                    name="content"
+                    id="mdeditor"
+                    defaultValue={contentValue}
+                    ref={this.textareaRef}
+                    required
+                  />
+                </div>
+
+                <div className="p-f-bottom-wrapper">
+                  <input
+                    type="url"
+                    placeholder="git repository"
+                    onChange={e => this.handleRepoChange(e)}
+                    value={this.state.repoValue}
+                  />
+                  <input
+                    type="text"
+                    placeholder="url"
+                    onChange={e => this.handleUrlChange(e)}
+                    value={this.state.urlValue}
+                  />
+
+                  <div className="f-buttons">
+                    <button className="button" onClick={(e) => this.handleSubmitProject(e)}>{submitValue}</button>
+                    <button className="button" onClick={e => this.handleResetForm(e)}>Reset</button>
+                  </div>
+
                 </div>
 
               </div>
-              
-            </div>
 
-              {this.handleRedirect()}
+                {this.handleRedirect()}
 
-          </fieldset>
+            </fieldset>
 
-        </form>
+          </form>
 
-      </div>
+        </div>
+      </Admin>
     )
   }
 }
