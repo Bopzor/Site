@@ -23,19 +23,19 @@ class Article {
    $query = $this->pdo->prepare
     ('
       SELECT a.title, a.content, a.publishedAt, a.id, GROUP_CONCAT(c.id SEPARATOR ",") AS category_id, GROUP_CONCAT(c.name SEPARATOR ",") AS category_name
-      FROM article a 
-      INNER JOIN article_category a_c 
+      FROM article a
+      INNER JOIN article_category a_c
       ON a_c.article_id = a.id
       INNER JOIN category c
-      ON c.id = a_c.category_id 
+      ON c.id = a_c.category_id
       WHERE a_c.article_id = a.id
       GROUP BY a.id
-      ORDER BY publishedAt DESC
+      ORDER BY a.publishedAt DESC
     ');
 
     $query->execute();
 
-    return $result = $query->fetchAll();   
+    return $result = $query->fetchAll();
   }
 
   public function createArticle() {
@@ -44,7 +44,7 @@ class Article {
     $query->execute([$this->title, $this->content]);
 
     $article_id = $this->pdo->lastInsertId();
-    
+
     $categories_id = explode(',', $this->categoriesId);
 
     foreach ($categories_id as $value) {
@@ -57,25 +57,25 @@ class Article {
       SELECT a.title, a.content, a.publishedAt, a.id, GROUP_CONCAT(c.name SEPARATOR ",")
         AS category_name
       FROM article a
-      INNER JOIN article_category a_c 
+      INNER JOIN article_category a_c
         ON a_c.article_id = a.id
       INNER JOIN category c
-        ON c.id = a_c.category_id 
+        ON c.id = a_c.category_id
       WHERE a.id = ? AND a_c.article_id = a.id
       GROUP BY a.id
     ');
 
     $query->execute([$article_id]);
     $result = $query->fetch();
-    
-    return $result;  
-  } 
+
+    return $result;
+  }
 
   public function removeArticle() {
     $query = $this->pdo->prepare
     ('
       DELETE FROM comment
-      WHERE article_id = ? 
+      WHERE article_id = ?
     ');
 
     $query->execute([$this->id]);
@@ -83,15 +83,15 @@ class Article {
     $query = $this->pdo->prepare
       ('
         DELETE FROM article_category
-        WHERE article_id = ? 
+        WHERE article_id = ?
       ');
 
-      $query->execute([$this->id]);  
+      $query->execute([$this->id]);
 
     $query = $this->pdo->prepare
       ('
         DELETE FROM article
-        WHERE id = ? 
+        WHERE id = ?
       ');
 
     $query->execute([$this->id]);
@@ -101,7 +101,7 @@ class Article {
 
   public function updateArticle() {
     $query = $this->pdo->prepare('
-      UPDATE article 
+      UPDATE article
       SET title=?, content=?, updatedAt=NOW()
       WHERE id=?
     ');
@@ -124,11 +124,11 @@ class Article {
 
     $query = $this->pdo->prepare('
       SELECT a.title, a.content, a.publishedAt, a.id, GROUP_CONCAT(c.id SEPARATOR ",") AS category_id, GROUP_CONCAT(c.name SEPARATOR ",") AS category_name
-      FROM article a 
-      INNER JOIN article_category a_c 
+      FROM article a
+      INNER JOIN article_category a_c
       ON a_c.article_id = a.id
       INNER JOIN category c
-      ON c.id = a_c.category_id 
+      ON c.id = a_c.category_id
       WHERE a.id = ? AND a_c.article_id = a.id
       GROUP BY a.id
     ');

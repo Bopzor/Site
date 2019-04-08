@@ -29,11 +29,12 @@ class Project {
     ('
       SELECT p.title, p.content, p.publishedAt, p.id, p.repo, p.url
       FROM project p
+      ORDER BY p.publishedAt DESC
     ');
 
     $query->execute();
 
-    return $result = $query->fetchAll();   
+    return $result = $query->fetchAll();
   }
 
   public function createProject() {
@@ -53,14 +54,14 @@ class Project {
     $query->execute([$project_id]);
     $result = $query->fetch();
 
-    return $result;  
-  } 
+    return $result;
+  }
 
   public function removeProject() {
     $query = $this->pdo->prepare
     ('
       DELETE FROM project
-      WHERE id = ? 
+      WHERE id = ?
     ');
 
     $query->execute([$this->id]);
