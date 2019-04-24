@@ -10,6 +10,12 @@ import Blog from './blog.js';
 import Site from './site.js';
 import LoginPage from './pages/loginPage.js';
 
+const RedirectExternal = ({ url }) => {
+  window.location = url;
+
+  return null;
+}
+
 class App extends Component {
   state = {
     admin: false,
@@ -30,10 +36,13 @@ class App extends Component {
 
         <Switch>
 
+          <Route path='/snaque' render={() => <RedirectExternal url="https://bopzor.me/__snaque" />} />
+          <Route path='/hanoi' render={() => <RedirectExternal url="https://bopzor.me/__hanoi" />} />
+
           <Route path='/blog' component={Blog} />
-          
+
           <Route path='/login' render={() => (
-              <LoginPage 
+              <LoginPage
                 admin={this.state.admin}
                 onSubmitLog={(result) => this.onSubmitLog(result)}
               />
