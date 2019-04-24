@@ -1,4 +1,4 @@
-const BASE_API_URL = 'http://localhost/api/routes';
+const BASE_API_URL = process.env.REACT_APP_BASE_API_URL;
 
 function buildParams(body) {
   let params = '';
@@ -22,7 +22,7 @@ export function queryToServer(url, callback, opts) {
   const xhr = new XMLHttpRequest();
 
   xhr.open(opts.method, url);
-  
+
   xhr.setRequestHeader('Authorization', opts.token);
 
   if (opts.body) {
@@ -41,7 +41,7 @@ export function queryToServer(url, callback, opts) {
         callback(xhr.response);
 
       }
-      
+
     }
   }
   xhr.send(params);
