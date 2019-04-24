@@ -3,15 +3,15 @@ import ReactDOM from 'react-dom';
 
 import './css/style.css';
 
-import { HashRouter } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
 ReactDOM.render((
-  <HashRouter>
+  <BrowserRouter>
     <App />
-  </HashRouter>
+  </BrowserRouter>
 ), document.getElementById('root'));
 
 registerServiceWorker();
