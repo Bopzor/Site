@@ -19,7 +19,8 @@
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/eslint-recommended",
-    "plugin:@typescript-eslint/recommended"
+    "plugin:@typescript-eslint/recommended",
+    "next"
   ],
   "ignorePatterns": "**/*.js",
   "rules": {
@@ -29,12 +30,24 @@
       "warn",
       {
         "groups": [
-          ["^(react|react-dom)$"],
-          ["^(path|fs|util)$"],
-          ["^[@a-z]"],
-          ["^src/"],
-          ["^../"],
-          ["^./"]
+          [
+            "^(react|react-dom)$"
+          ],
+          [
+            "^(path|fs|util)$"
+          ],
+          [
+            "^[@a-z]"
+          ],
+          [
+            "^src/"
+          ],
+          [
+            "^../"
+          ],
+          [
+            "^./"
+          ]
         ]
       }
     ]
