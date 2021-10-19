@@ -3,4 +3,10 @@ export type Project = {
   description: string;
   date: string;
   techno: string[];
+  media: Media;
+};
+
+type Media = {
+  image: string;
+  iframe?: string;
 };

@@ -1,55 +1,53 @@
 import { GetStaticProps } from 'next';
-import Head from 'next/head';
 import Link from 'next/link';
 
-import Date from '../components/date';
-import Layout, { siteTitle } from '../components/layout';
+import Layout from '../components/layout';
+import Project from '../components/project';
+import LinkIcon from '../icons/link.svg';
+import { getBiographyData } from '../lib/biography';
+import { copyToClipboard } from '../lib/copyToClipboard';
 import { getSortedProjectsData } from '../lib/projects';
-import utilStyles from '../styles/utils.module.css';
-import type { Project as ProjectType } from '../types';
+import styles from '../styles/home.module.css';
+import { Project as ProjectType } from '../types';
 
 type HomeProps = {
-  allProjectsData: (ProjectType & { id: string })[];
+  biography: { contentHtml: string };
+  projects: ({ id: string; contentHtml: string } & ProjectType)[];
 };
 
-const Home: React.FC<HomeProps> = ({ allProjectsData }) => {
+const Home: React.FC<HomeProps> = ({ biography, projects }) => {
   return (
-    <Layout home>
-      <Head>
-        <title>{siteTitle}</title>
-      </Head>
-      <section className={utilStyles.headingMd}>
-        <p>[Your Self Introduction]</p>
-        <p>
-          (This is a sample website - you’ll be building a site like this in{' '}
-          <a href="https://nextjs.org/learn">our Next.js tutorial</a>.)
-        </p>
+    <Layout projects={projects}>
+      <section id="bio" className={`${styles.headingMd} ${styles.bio}`}>
+        <div dangerouslySetInnerHTML={{ __html: biography.contentHtml }} />
       </section>
-      <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-        <h2 className={utilStyles.headingLg}>Blog</h2>
-        <ul className={utilStyles.list}>
-          {allProjectsData.map(({ id, date, title }) => (
-            <li className={utilStyles.listItem} key={id}>
-              <Link href={`/projects/${id}`}>
-                <a>{title}</a>
-              </Link>
-              <br />
-              <small className={utilStyles.lightText}>
-                <Date dateString={date} />
-              </small>
-            </li>
-          ))}
-        </ul>
+
+      <section id="projects" className={styles.projects}>
+        <span className={styles.headingWrapper}>
+          <Link href="#projects">
+            <a onClick={() => copyToClipboard('#projects')} title="Copier le lien" className={styles.anchorLink}>
+              <LinkIcon width={24} height={24} />
+            </a>
+          </Link>
+          <h2 className={styles.heading}>Mes projets</h2>
+        </span>
+
+        {projects.map((project, index) => (
+          <Project key={project.id} projectData={project} reverse={index % 2 === 0} />
+        ))}
       </section>
     </Layout>
   );
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const allProjectsData = getSortedProjectsData();
+  const projects = await getSortedProjectsData();
+  const biography = await getBiographyData();
+
   return {
     props: {
-      allProjectsData,
+      biography,
+      projects,
     },
   };
 };

@@ -7,28 +7,33 @@ import html from 'remark-html';
 
 import { Project } from '../types';
 
-const projectsDirectory = path.join(process.cwd(), '../data/projects');
+const projectsDirectory = path.join(process.cwd(), './src/data/projects');
 
-export function getSortedProjectsData() {
+export const getSortedProjectsData = async () => {
   // Get file names under /projects
   const fileNames = fs.readdirSync(projectsDirectory);
-  const allProjectsData = fileNames.map((fileName) => {
-    // Remove ".md" from file name to get id
-    const id = fileName.replace(/\.md$/, '');
+  const allProjectsData = await Promise.all(
+    fileNames.map(async (fileName) => {
+      // Remove ".md" from file name to get id
+      const id = fileName.replace(/\.md$/, '');
 
-    // Read markdown file as string
-    const fullPath = path.join(projectsDirectory, fileName);
-    const fileContents = fs.readFileSync(fullPath, 'utf8');
+      // Read markdown file as string
+      const fullPath = path.join(projectsDirectory, fileName);
+      const fileContents = fs.readFileSync(fullPath, 'utf8');
 
-    // Use gray-matter to parse the project metadata section
-    const matterResult = matter(fileContents);
+      // Use gray-matter to parse the project metadata section
+      const matterResult = matter(fileContents);
+      const processedContent = await remark().use(html).process(matterResult.content);
+      const contentHtml = processedContent.toString();
 
-    // Combine the data with the id
-    return {
-      id,
-      ...(matterResult.data as Project),
-    };
-  });
+      // Combine the data with the id
+      return {
+        id,
+        contentHtml,
+        ...(matterResult.data as Project),
+      };
+    }),
+  );
   // Sort projects by date
   return allProjectsData.sort((a, b) => {
     if (a.date < b.date) {
@@ -37,7 +42,7 @@ export function getSortedProjectsData() {
       return -1;
     }
   });
-}
+};
 
 export function getAllProjectIds() {
   const fileNames = fs.readdirSync(projectsDirectory);
