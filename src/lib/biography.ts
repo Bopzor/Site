@@ -4,7 +4,7 @@ import path from 'path';
 import remark from 'remark';
 import html from 'remark-html';
 
-const projectsDirectory = path.join(process.cwd(), './src/data');
+const projectsDirectory = path.join(process.cwd(), './src/content');
 
 export async function getBiographyData() {
   const fullPath = path.join(projectsDirectory, 'bio.md');

@@ -68,7 +68,7 @@ const Footer: React.FC<FooterProps> = ({ projects }) => (
             <span className={styles.icon}>
               <Mail />
             </span>{' '}
-            M'envoyer un mail
+            M&apos;envoyer un mail
           </a>
         </li>
       </ul>

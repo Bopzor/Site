@@ -7,7 +7,7 @@ import html from 'remark-html';
 
 import { Project } from '../types';
 
-const projectsDirectory = path.join(process.cwd(), './src/data/projects');
+const projectsDirectory = path.join(process.cwd(), './src/content/projects');
 
 export const getSortedProjectsData = async () => {
   // Get file names under /projects
