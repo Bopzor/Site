@@ -10,23 +10,18 @@ import { Project } from '../types';
 const projectsDirectory = path.join(process.cwd(), './src/content/projects');
 
 export const getSortedProjectsData = async () => {
-  // Get file names under /projects
   const fileNames = fs.readdirSync(projectsDirectory);
   const allProjectsData = await Promise.all(
     fileNames.map(async (fileName) => {
-      // Remove ".md" from file name to get id
       const id = fileName.replace(/\.md$/, '');
 
-      // Read markdown file as string
       const fullPath = path.join(projectsDirectory, fileName);
       const fileContents = fs.readFileSync(fullPath, 'utf8');
 
-      // Use gray-matter to parse the project metadata section
       const matterResult = matter(fileContents);
       const processedContent = await remark().use(html).process(matterResult.content);
       const contentHtml = processedContent.toString();
 
-      // Combine the data with the id
       return {
         id,
         contentHtml,
@@ -34,7 +29,7 @@ export const getSortedProjectsData = async () => {
       };
     }),
   );
-  // Sort projects by date
+
   return allProjectsData.sort((a, b) => {
     if (a.date < b.date) {
       return 1;
@@ -59,14 +54,11 @@ export async function getProjectData(id: string) {
   const fullPath = path.join(projectsDirectory, `${id}.md`);
   const fileContents = fs.readFileSync(fullPath, 'utf8');
 
-  // Use gray-matter to parse the project metadata section
   const matterResult = matter(fileContents);
 
-  // Use remark to convert markdown into HTML string
   const processedContent = await remark().use(html).process(matterResult.content);
   const contentHtml = processedContent.toString();
 
-  // Combine the data with the id and contentHtml
   return {
     id,
     contentHtml,

@@ -19,7 +19,7 @@ media:
   educomedia
 </a>
 
-Pour l'instant à l'étape de POC, ce projet est mon playground pour appliquer la `Clean Architecture`.
+Pour l'instant à l'étape de POC, ce projet est un premier playground pour appliquer la `Clean Architecture`.
 Actuellement, il s'agit d'une application purement front-end, réalisé en `TypeScript` avec `React` et `Redux`.
 
 L'utilisation d'adapters InMemory me permet de tester facilement mon code métier, mais aussi d'avoir un POC totalement fonctionnel.

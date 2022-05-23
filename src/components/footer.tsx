@@ -60,7 +60,7 @@ const Footer: React.FC<FooterProps> = ({ projects }) => (
         </li>
         <li>
           <a
-            href="mailto:contact@bopzor.me?body=Bonjour, je suis à l'aise avec le tutoiement :)"
+            href="mailto:dev.violaine@gmail.com?body=Bonjour, je suis à l'aise avec le tutoiement :)"
             target="_blank"
             rel="noreferrer"
             className={styles.externalLink}
@@ -92,7 +92,7 @@ const Footer: React.FC<FooterProps> = ({ projects }) => (
         </li>
         <li>
           Website made by{' '}
-          <a href="http://bopzor.me" target="_blank" rel="noreferrer">
+          <a href="http://www.bopzor.me" target="_blank" rel="noreferrer">
             Bopzor
           </a>{' '}
           with 🧡, React and Next.js

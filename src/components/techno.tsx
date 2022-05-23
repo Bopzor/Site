@@ -24,6 +24,7 @@ const technoMap: Record<string, React.ReactNode> = {
   MaterialUi: <MaterialUi />,
   NodeJs: <NodeJS />,
   React: <ReactIcon />,
+  'React-Native': <ReactIcon />,
   Redux: <Redux />,
   TypeScript: <TypeScript />,
 };
