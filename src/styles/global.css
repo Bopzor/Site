@@ -7,6 +7,7 @@ body {
   line-height: 1.6;
   font-size: 18px;
   background-color: #f2f2f5;
+  color: #514c5e
 }
 
 * {
@@ -30,7 +31,7 @@ img {
 .githubLink {
   display: flex;
   align-items: center;
-  border: 1px solid #ddd;
+  box-shadow: rgb(133 110 139 / 35%) 1px 1px 2px 1px;
   border-radius: 3px;
   padding: 2px 4px;
   width: fit-content;
@@ -96,4 +97,11 @@ input[type="checkbox"]:checked ~ label::before {
 input[type="checkbox"]:checked ~ label ~ p {
   max-height: 100%;
   margin: 20px;
+}
+
+
+@media screen and (max-width: 700px) {
+  .collapse p {
+    padding-left: 0
+  }
 }

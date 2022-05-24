@@ -22,8 +22,18 @@
   transition: opacity 1s;
 }
 
+.headingWrapper {
+  align-self: flex-start;
+}
+
 .headingWrapper:hover .anchorLink {
   opacity: 1;
+}
+
+.projects {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .projects > section {
@@ -31,6 +41,12 @@
   padding-bottom: 1px;
   background: linear-gradient(to left, #f2f2f5 0%, #d3932e4d 25%, #f2f2f5 100%) left bottom #f2f2f5 no-repeat;
   background-size: 100% 1px;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  min-height: 90vh;
+  max-width: 90%;
 }
 
 @media (min-width: 1400px) {
@@ -50,7 +66,7 @@
   }
 }
 
-@media (min-width: 860px) {
+@media (max-width: 860px) {
   .projects {
     max-width: 90%;
     margin: auto;

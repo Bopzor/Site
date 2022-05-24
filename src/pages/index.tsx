@@ -33,7 +33,7 @@ const Home: React.FC<HomeProps> = ({ biography, projects }) => {
         </span>
 
         {projects.map((project, index) => (
-          <Project key={project.id} projectData={project} reverse={index % 2 === 0} />
+          <Project key={project.id} projectData={project} reverse={index % 2 === 0} skipAnimation={index === 0} />
         ))}
       </section>
     </Layout>

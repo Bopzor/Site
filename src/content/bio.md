@@ -1,4 +1,4 @@
-Salut, je suis Violaine, aka _Bopzor_.
+# Salut, je suis Violaine, aka _Bopzor_.
 
 J'ai rejoins l'équipe d'[Azot](https://azot.dev) fin février 2022. Je serais heureuse d'apporter mes competences full-stack et crafts sur vos missions en full remote.
 

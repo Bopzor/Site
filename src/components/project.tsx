@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { useDisableScrollOnEnterIframe } from '../hooks/useDisabledScrollOnEnterIframe';
+import { useAnimateOnScroll } from '../hook/useAnimateOnScroll';
 import LinkIcon from '../icons/link.svg';
 import { copyToClipboard } from '../lib/copyToClipboard';
 import type { Project as ProjectType } from '../types';
@@ -12,10 +12,11 @@ import Techno from './techno';
 type ProjectProps = {
   projectData: ProjectType & { id: string; contentHtml: string };
   reverse: boolean;
+  skipAnimation?: boolean;
 };
 
-const Project: React.FC<ProjectProps> = ({ projectData, reverse }) => {
-  useDisableScrollOnEnterIframe(`#${projectData.title}-iframe`);
+const Project: React.FC<ProjectProps> = ({ projectData, reverse, skipAnimation }) => {
+  useAnimateOnScroll(`projects/${projectData.id}`, styles.active);
 
   const media = projectData.media.iframe ? (
     <>
@@ -35,7 +36,12 @@ const Project: React.FC<ProjectProps> = ({ projectData, reverse }) => {
   );
 
   return (
-    <section id={`projects/${projectData.id}`} className={reverse ? styles.reverse : ''}>
+    <section
+      id={`projects/${projectData.id}`}
+      className={`${reverse ? `${styles.reverse} ${styles.fadeLeft}` : styles.fadeRight} ${styles.reveal} ${
+        skipAnimation ? styles.alwayVisible : ''
+      }`}
+    >
       <article className={styles.project}>
         <div>
           <div className={styles.heading}>

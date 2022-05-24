@@ -5,7 +5,7 @@ date: 2019-08
 techno:
   - TypeScript
   - React
-  - SSR
+  - SG
 media:
   image: lairduthe.png
 ---
@@ -19,4 +19,4 @@ media:
 
 Réalisation, pour un ami, de son [site web](https://lairduthe.fr).
 
-Il s'agit d'un site static, rendu en SSR.
+Il s'agit d'un site static faisant la présentation de son salon de thé.

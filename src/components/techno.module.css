@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid #ddd;
+  box-shadow: rgb(133 110 139 / 35%) 1px 1px 4px 1px;
   border-radius: 3px;
   max-width: fit-content;
   min-width: 64px;
