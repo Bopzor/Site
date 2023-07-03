@@ -6,7 +6,8 @@ J'ai rejoins l'équipe d'[Azot](https://azot.dev) fin février 2022. Je serais h
 <input type="checkbox" id="xp">
 <label for="xp">Voir mes expériences</label>
 
-J'ai déjà pu prêter main forte sur du développement back-end chez [SuperMonday](https://supermonday.io/). Et actuellement je participe à l'amélioration de qualité du code existant et au développement de nouvelles fonctionnalités front-end sur l'application [Agrisight](https://agrisight.fr).
+J'ai déjà pu prêter main forte sur du développement back-end chez [SuperMonday](https://supermonday.io/), puis j'ai enchaîné avec l'amélioration de qualité du code existant et au développement de nouvelles fonctionnalités front-end sur l'application [Agrisight](https://agrisight.fr).
+J'ai en suite travaillé pendant une 10aine de mois sur un système de gestion opérationnel, en travaillant main dans la main avec les utilisateur-trices pour apporter le plus de valeur possible. Je suis actuellement disponible !
 
 J'ai précédemment travaillé chez [Alltricks](https://alltricks.fr) en tant que développeuse web front-end pendant 9 mois.
 J'y ai mis en place l'automatisation des tests de non-régression avec Cypress et la syntaxe Gherkin et ai participé à la migration du code existant vers du React - TypeScript et Next.js.
