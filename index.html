@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/favicon.ico" />
+
+  <link rel="stylesheet" type="text/css" media="all" href="/fonts.css">
+
+  <title>Violaine B</title>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #FAFAFA;
+    }
+
+    * {
+      box-sizing: border-box;
+      -moz-box-sizing: border-box;
+    }
+
+    .page {
+      max-width: 1080px;
+      min-width: 900px;
+      font-size: 16px;
+      margin: 1cm auto;
+      border: 1px #D3D3D3 solid;
+      border-radius: 5px;
+      background: white;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    }
+
+    @page {
+      size: A4 portrait;
+      margin: 0;
+    }
+
+    @media print {
+      #lang {
+        display: none;
+      }
+
+      html {
+        background: white;
+      }
+
+      .page {
+        height: 29.7cm;
+        width: 21cm;
+        font-size: 13px;
+        margin: 0;
+        padding: 0.5cm;
+        border: initial;
+        border-radius: initial;
+        width: initial;
+        min-height: initial;
+        box-shadow: initial;
+        background: initial;
+        page-break-after: always;
+        background: white;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page" id="root"></div>
+  <script type="module" src="/src/main.tsx"></script>
+</body>
+
+</html>
