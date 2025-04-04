@@ -1,7 +1,10 @@
 import { SectionTitle } from "../components/SectionTitle";
+import { useCVContext } from "../CVContext";
 import type { Data } from "../data";
 
 export function Skills({ content }: { content: Data }) {
+  const { setHoveredSkill } = useCVContext();
+
   return (
     <>
       <SectionTitle title={content.skillsTitle} />
@@ -13,7 +16,13 @@ export function Skills({ content }: { content: Data }) {
 
             <div className="row gap-x-6 gap-y-1 flex-wrap">
               {skills.map((skill) => (
-                <div key={skill}>{skill}</div>
+                <div
+                  onMouseEnter={() => setHoveredSkill(skill)}
+                  onMouseLeave={() => setHoveredSkill(null)}
+                  key={skill}
+                >
+                  {skill}
+                </div>
               ))}
             </div>
           </div>

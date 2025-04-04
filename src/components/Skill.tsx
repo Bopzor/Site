@@ -22,6 +22,7 @@ import Vite from "../assets/icons/vite.svg?react";
 import Vitest from "../assets/icons/vitest.svg?react";
 import Vue from "../assets/icons/vuejs.svg?react";
 
+import { useCVContext } from "../CVContext";
 import { Icon } from "./Icon";
 
 const skillMap: Record<string, JSX.Element> = {
@@ -49,11 +50,17 @@ const skillMap: Record<string, JSX.Element> = {
 };
 
 export function Skill({ skill }: { skill: string }) {
+  const { hoveredSkill } = useCVContext();
   const icon = skillMap[skill] ?? "";
 
   return (
-    <div className="flex items-center justify-center p-1 text-sm">
-      {icon && <Icon icon={icon} />}
+    <div
+      className={[
+        "flex items-center justify-center p-1 text-sm",
+        `${hoveredSkill === skill ? "text-purple-800" : ""}`,
+      ].join(" ")}
+    >
+      {icon && <Icon icon={icon} isGrayscale={hoveredSkill !== skill} />}
       {skill}
     </div>
   );
