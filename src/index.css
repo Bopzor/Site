@@ -32,47 +32,20 @@
 }
 
 @layer components {
-  .col {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .row {
-    display: flex;
-    flex-direction: row;
-  }
-
   .link {
     color: var(--color-purple-800);
-  }
-
-  .link:hover {
-    text-decoration: underline;
-  }
-
-  .page {
-    max-width: 1080px;
-    min-width: 900px;
-    font-size: var(--text-base);
-    margin: 1cm auto;
-    background: var(--color-white);
-    box-shadow: var(--shadow-2xl);
-  }
-
-  @media print {
-    .page {
-      height: 29.7cm;
-      width: 21cm;
-      margin: 0;
-      padding: 0.5cm;
-      border: initial;
-      border-radius: initial;
-      width: initial;
-      min-height: initial;
-      box-shadow: initial;
-      background: initial;
-      page-break-after: always;
-      background: var(--color-white);
+    &:hover {
+      text-decoration: underline;
     }
   }
+}
+
+@utility col {
+  display: flex;
+  flex-direction: column;
+}
+
+@utility row {
+  display: flex;
+  flex-direction: row;
 }

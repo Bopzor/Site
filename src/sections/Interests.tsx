@@ -6,7 +6,7 @@ export function Interests({ content }: { content: Data }) {
     <>
       <SectionTitle title={content.interestsTitle} />
 
-      <div className="row justify-between gap-2 px-6">
+      <div className="col md:row justify-between gap-2 px-6">
         {content.interests.map(({ title, activities }) => (
           <InterestColumn title={title} key={title}>
             {activities.map((activity) => {
@@ -28,7 +28,7 @@ function InterestColumn({
 }) {
   return (
     <div className="col flex-1">
-      <p className="text-center font-semibold">{title}</p>
+      <p className="md:text-center font-semibold">{title}</p>
       {children}
     </div>
   );

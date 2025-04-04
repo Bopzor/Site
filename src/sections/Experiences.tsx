@@ -13,8 +13,8 @@ export function Experiences({ content }: { content: Data }) {
       <div className="col gap-4">
         {content.experiences.map((experience) => (
           <div key={experience.name}>
-            <div className="flex justify-between">
-              <div className="flex gap-2">
+            <div className="row flex-wrap justify-between gap-2 pb-2 items-center">
+              <div className="row flex-wrap gap-2">
                 <div className="font-bold">{experience.job}</div>
                 <a
                   className="link italic"
@@ -32,7 +32,7 @@ export function Experiences({ content }: { content: Data }) {
             <div className="col">
               <p className="px-2">{experience.description}</p>
 
-              <div className="flex flex-wrap">
+              <div className="row flex-wrap">
                 {experience.skills.map((skill) => (
                   <Skill key={skill} skill={skill} />
                 ))}

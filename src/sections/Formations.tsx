@@ -8,7 +8,7 @@ export function Formations({ content }: { content: Data }) {
 
       <div className="flex flex-wrap gap-2 text-sm ">
         {content.formations.map(({ name, date, school }) => (
-          <div key={name}>
+          <div className="w-full" key={name}>
             <div className="font-bold">{name}</div>
             <div className="row justify-between">
               <a

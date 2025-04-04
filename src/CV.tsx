@@ -16,8 +16,8 @@ export function CV({ content }: { content: Data }) {
         </div>
       </div>
 
-      <div className="grid grid-cols-7">
-        <div className="col bg-gray-200 col-span-2">
+      <div className="md:grid md:grid-cols-7">
+        <div className="col bg-gray-200 md:col-span-2">
           <About content={content} />
 
           <div className="col p-4 gap-2">
@@ -29,7 +29,7 @@ export function CV({ content }: { content: Data }) {
           </div>
         </div>
 
-        <div className="col-span-5 px-4">
+        <div className="md:col-span-5 px-4">
           <Experiences content={content} />
         </div>
       </div>

@@ -16,10 +16,17 @@ const data: { en: Data; fr: Data } = {
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<CV content={data.fr} />} />
-      <Route path="/en" element={<CV content={data.en} />} />
-    </Routes>
+    <div
+      className={[
+        "md:max-w-[1080px] md:min-w-[900px] md:m-[1cm_auto] md:bg-white md:shadow-2xl",
+        "print:h-[29.7cm] print:w-[21cm] print:m-0 print:p-[0.5cm] print:border-initial print:rounded-none print:min-w-initial print:min-h-initial print:shadow-none print:bg-initial print:[page-break-after:always] print:bg-white",
+      ].join(" ")}
+    >
+      <Routes>
+        <Route path="/" element={<CV content={data.fr} />} />
+        <Route path="/en" element={<CV content={data.en} />} />
+      </Routes>
+    </div>
   );
 }
 
