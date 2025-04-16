@@ -1,5 +1,6 @@
 import { JSX } from "react";
 
+import BigQuery from "../assets/icons/bigquery.svg?react";
 import CloudBuild from "../assets/icons/cloud-build.svg?react";
 import Cypress from "../assets/icons/cypress.svg?react";
 import Docker from "../assets/icons/Docker.svg?react";
@@ -9,9 +10,11 @@ import GitLab from "../assets/icons/gitlab.svg?react";
 import JavaScript from "../assets/icons/javascript.svg?react";
 import Jest from "../assets/icons/jest.svg?react";
 import MaterialUi from "../assets/icons/Material-ui.svg?react";
+import MySQL from "../assets/icons/mysql.svg?react";
 import NestJs from "../assets/icons/nestjs.svg?react";
 import Next from "../assets/icons/nextjs.svg?react";
 import NodeJS from "../assets/icons/NodeJS.svg?react";
+import PostgreSQL from "../assets/icons/postgresql.svg?react";
 import ReactIcon from "../assets/icons/React.svg?react";
 import Redux from "../assets/icons/Redux.svg?react";
 import Tailwindcss from "../assets/icons/Tailwindcss.svg?react";
@@ -47,6 +50,9 @@ const skillMap: Record<string, JSX.Element> = {
   "testing-library": <TestingLibrary />,
   Jest: <Jest />,
   Vitest: <Vitest />,
+  PostgreSQL: <PostgreSQL />,
+  MySQL: <MySQL />,
+  BigQuery: <BigQuery />,
 };
 
 export function Skill({ skill }: { skill: string }) {

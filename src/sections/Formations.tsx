@@ -1,28 +1,32 @@
+import React from "react";
 import { SectionTitle } from "../components/SectionTitle";
 import type { Data } from "../data";
 
 export function Formations({ content }: { content: Data }) {
   return (
-    <>
+    <section>
       <SectionTitle title={content.formationTitle} />
 
-      <div className="flex flex-wrap gap-2 text-sm ">
+      <div className="md:grid md:grid-cols-4 text-sm">
         {content.formations.map(({ name, date, school }) => (
-          <div className="w-full" key={name}>
-            <div className="font-bold">{name}</div>
-            <div className="row justify-between">
-              <a
-                href={`https://${school.link}`}
-                className="link italic"
-                target="_blank"
-              >
-                {school.name}
-              </a>
-              <div className="text-sm italic">{date}</div>
+          <React.Fragment key={name}>
+            <div className="md:col-span-3">
+              <div className="row flex-wrap gap-2">
+                <div className="font-bold">{name}</div>
+
+                <a
+                  href={`https://${school.link}`}
+                  className="link italic"
+                  target="_blank"
+                >
+                  {school.name}
+                </a>
+              </div>
             </div>
-          </div>
+            <div className="italic md:text-right">{date}</div>
+          </React.Fragment>
         ))}
       </div>
-    </>
+    </section>
   );
 }

@@ -3,10 +3,10 @@ import type { Data } from "../data";
 
 export function Interests({ content }: { content: Data }) {
   return (
-    <>
+    <section>
       <SectionTitle title={content.interestsTitle} />
 
-      <div className="col md:row justify-between gap-2 px-6">
+      <div className="col md:row justify-between gap-2 text-sm">
         {content.interests.map(({ title, activities }) => (
           <InterestColumn title={title} key={title}>
             {activities.map((activity) => {
@@ -15,7 +15,7 @@ export function Interests({ content }: { content: Data }) {
           </InterestColumn>
         ))}
       </div>
-    </>
+    </section>
   );
 }
 

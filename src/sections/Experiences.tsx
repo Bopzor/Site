@@ -7,7 +7,7 @@ export function Experiences({ content }: { content: Data }) {
   const formatDate = useFormatDate();
 
   return (
-    <>
+    <section>
       <SectionTitle title={content.experiencesTitle} />
 
       <div className="col gap-4">
@@ -41,6 +41,6 @@ export function Experiences({ content }: { content: Data }) {
           </div>
         ))}
       </div>
-    </>
+    </section>
   );
 }

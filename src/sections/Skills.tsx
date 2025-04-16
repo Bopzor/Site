@@ -7,14 +7,14 @@ export function Skills({ content }: { content: Data }) {
 
   return (
     <>
-      <SectionTitle title={content.skillsTitle} />
+      <SectionTitle title={content.hardSkillsTitle} size="small" />
 
-      <div className="col flex-wrap gap-2 ">
-        {content.skills.map(({ title, skills }) => (
+      <div className="col flex-wrap gap-2">
+        {content.skills.hard.map(({ title, skills }) => (
           <div key={title}>
             <div className="text-sm font-bold">{title}</div>
 
-            <div className="row gap-x-6 gap-y-1 flex-wrap">
+            <div className="row gap-x-6 gap-y-1 flex-wrap print:text-sm">
               {skills.map((skill) => (
                 <div
                   onMouseEnter={() => setHoveredSkill(skill)}
@@ -23,6 +23,19 @@ export function Skills({ content }: { content: Data }) {
                 >
                   {skill}
                 </div>
+              ))}
+            </div>
+          </div>
+        ))}
+
+        <SectionTitle title={content.softSkillsTitle} size="small" />
+        {content.skills.soft.map(({ title, skills }) => (
+          <div key={title}>
+            <div className="text-sm font-bold">{title}</div>
+
+            <div className="row gap-x-6 gap-y-1 flex-wrap print:text-sm">
+              {skills.map((skill) => (
+                <div key={skill}>{skill}</div>
               ))}
             </div>
           </div>

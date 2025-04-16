@@ -17,7 +17,7 @@ export type CommonData = {
   github: string;
   website: string;
   experiences: Record<string, CommonExperience>;
-  skills: Record<string, string[]>;
+  skills: { hard: Record<string, string[]> };
   formations: Record<string, Omit<Formation, "name">>;
 };
 
@@ -27,9 +27,9 @@ type TranslatedExperience = {
 };
 
 export type TranslatedData = {
+  job: string;
   description: string;
   about: string;
-  skillsTitle: string;
   experiencesTitle: string;
   experiences: Record<string, TranslatedExperience>;
   current: string;
@@ -37,7 +37,12 @@ export type TranslatedData = {
   interests: Interest[];
   en: string;
   fr: string;
-  skills: Record<string, { title: string }>;
+  hardSkillsTitle: string;
+  softSkillsTitle: string;
+  skills: {
+    hard: Record<string, { title: string }>;
+    soft: { title: string; skills: string[] }[];
+  };
   formationTitle: string;
   formations: Record<string, { name: string }>;
 };
@@ -72,13 +77,13 @@ type Formation = {
 
 export type Data = {
   name: string;
+  job: string;
   description: string;
   about: string;
   email: string;
   linkedin: string;
   github: string;
   website: string;
-  skillsTitle: string;
   experiencesTitle: string;
   experiences: Experience[];
   interestsTitle: string;
@@ -86,7 +91,12 @@ export type Data = {
   current: string;
   en: string;
   fr: string;
-  skills: Skill[];
+  hardSkillsTitle: string;
+  softSkillsTitle: string;
+  skills: {
+    soft: Skill[];
+    hard: Skill[];
+  };
   formationTitle: string;
   formations: Formation[];
 };
@@ -113,11 +123,15 @@ export function mergeData(
     });
   }
 
-  const skills: Skill[] = [];
-  for (const [skillKey, skill] of Object.entries(commonSkills)) {
-    skills.push({
+  const skills: { soft: Skill[]; hard: Skill[] } = {
+    hard: [],
+    soft: translatedSkills.soft,
+  };
+
+  for (const [skillKey, skill] of Object.entries(commonSkills.hard)) {
+    skills.hard.push({
       skills: skill,
-      ...translatedSkills[skillKey],
+      ...translatedSkills.hard[skillKey],
     });
   }
 

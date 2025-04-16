@@ -11,8 +11,8 @@ import { Skills } from "./sections/Skills";
 export function CV({ content }: { content: Data }) {
   return (
     <CVContextProvider>
-      <div className="py-4 col gap-2 print:py-0">
-        <div className="py-4">
+      <div className="print:pt-2 pt-4 col gap-2 print:py-0">
+        <div className="py-4 print:py-0">
           <div className="px-10">
             <Header content={content} />
           </div>
@@ -26,17 +26,15 @@ export function CV({ content }: { content: Data }) {
               <Contact content={content} />
 
               <Skills content={content} />
-
-              <Formations content={content} />
             </div>
           </div>
 
-          <div className="md:col-span-5 px-4">
+          <div className="col gap-y-1 md:col-span-5 px-4">
             <Experiences content={content} />
+            <Formations content={content} />
+            <Interests content={content} />
           </div>
         </div>
-
-        <Interests content={content} />
       </div>
     </CVContextProvider>
   );

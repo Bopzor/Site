@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router";
 
+import { ContactPage } from "./ContactPage";
 import { CV } from "./CV";
 import { type Data, mergeData } from "./data";
 
@@ -25,6 +26,7 @@ function App() {
       <Routes>
         <Route path="/" element={<CV content={data.fr} />} />
         <Route path="/en" element={<CV content={data.en} />} />
+        <Route path="/contact" element={<ContactPage content={data.en} />} />
       </Routes>
     </div>
   );
