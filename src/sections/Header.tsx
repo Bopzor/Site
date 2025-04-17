@@ -20,6 +20,7 @@ export function Header({ content }: { content: Data }) {
           </div>
 
           <h2 className="text-3xl font-bold">{content.job}</h2>
+          <p className="text-xs">{content.description}</p>
         </div>
 
         <div className="ml-auto">
