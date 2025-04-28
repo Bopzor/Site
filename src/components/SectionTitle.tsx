@@ -15,9 +15,10 @@ export function SectionTitle({
       <div className="h-0.5 flex-1 bg-purple-800" />
       <div className="text-wrap text-center">
         <h2
-          className={["my-2 font-bold text-purple-800", sizeClasses[size]].join(
-            " "
-          )}
+          className={[
+            "my-2 font-bold text-purple-800 print:my-1",
+            sizeClasses[size],
+          ].join(" ")}
         >
           {title}
         </h2>

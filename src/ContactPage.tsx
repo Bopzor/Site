@@ -3,12 +3,15 @@ import { useAppContext } from "./contexts/AppContext";
 import { Contact } from "./sections/Contact";
 
 import photo from "./assets/photo.png";
+import { CompanyCustomization } from "./components/CompanyCustomization";
 
 export function ContactPage() {
   const content = useAppContext();
 
   return (
-    <div className="p-10 col justify-center items-center">
+    <div className="p-10 col justify-center items-center relative">
+      <CompanyCustomization content={content} />
+
       <div className="relative">
         <div className="flex justify-center p-4">
           <img src={photo} className="size-[156px]" />
