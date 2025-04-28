@@ -1,5 +1,5 @@
 import { SectionTitle } from "../components/SectionTitle";
-import { useCVContext } from "../CVContext";
+import { useCVContext } from "../contexts/CVContext";
 import type { Data } from "../data";
 
 export function Skills({ content }: { content: Data }) {

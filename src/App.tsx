@@ -2,18 +2,7 @@ import { Route, Routes } from "react-router";
 
 import { ContactPage } from "./ContactPage";
 import { CV } from "./CV";
-import { type Data, mergeData } from "./data";
-
-const data: { en: Data; fr: Data } = {
-  en: mergeData(
-    JSON.parse(import.meta.env.VITE_DATA_COMMON),
-    JSON.parse(import.meta.env.VITE_DATA_EN)
-  ),
-  fr: mergeData(
-    JSON.parse(import.meta.env.VITE_DATA_COMMON),
-    JSON.parse(import.meta.env.VITE_DATA_FR)
-  ),
-};
+import { AppContextProvider } from "./contexts/AppContext";
 
 function App() {
   return (
@@ -24,9 +13,22 @@ function App() {
       ].join(" ")}
     >
       <Routes>
-        <Route path="/" element={<CV content={data.fr} />} />
-        <Route path="/en" element={<CV content={data.en} />} />
-        <Route path="/contact" element={<ContactPage content={data.en} />} />
+        <Route
+          path="/"
+          element={
+            <AppContextProvider>
+              <CV />
+            </AppContextProvider>
+          }
+        />
+        <Route
+          path="/contact"
+          element={
+            <AppContextProvider>
+              <ContactPage />
+            </AppContextProvider>
+          }
+        />
       </Routes>
     </div>
   );

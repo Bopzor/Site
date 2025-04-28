@@ -1,4 +1,5 @@
 import React, { JSX } from "react";
+import { useSearchParams } from "react-router";
 
 import GitHub from "../assets/icons/github.svg?react";
 import Linkedin from "../assets/icons/linkedin.svg?react";
@@ -8,6 +9,8 @@ import { Icon } from "../components/Icon";
 import type { Data } from "../data";
 
 export function Contact({ content }: { content: Data }) {
+  const [searchParams] = useSearchParams();
+
   return (
     <div className="col">
       <WithRightIcon icon={<Mail />}>
@@ -29,7 +32,11 @@ export function Contact({ content }: { content: Data }) {
       </WithRightIcon>
 
       <WithRightIcon icon={<Website />}>
-        <a href={`https://${content.website}`} target="_blank">
+        <a
+          href={`https://${content.website}?${
+            searchParams.get("language") === "en" ? "language=en" : ""
+          }`}
+        >
           {content.website}
         </a>
       </WithRightIcon>

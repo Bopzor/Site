@@ -1,5 +1,5 @@
-import { CVContextProvider } from "./CVContext";
-import type { Data } from "./data";
+import { useAppContext } from "./contexts/AppContext";
+import { CVContextProvider } from "./contexts/CVContext";
 import { About } from "./sections/About";
 import { Contact } from "./sections/Contact";
 import { Experiences } from "./sections/Experiences";
@@ -8,7 +8,9 @@ import { Header } from "./sections/Header";
 import { Interests } from "./sections/Interests";
 import { Skills } from "./sections/Skills";
 
-export function CV({ content }: { content: Data }) {
+export function CV() {
+  const content = useAppContext();
+
   return (
     <CVContextProvider>
       <div className="print:pt-2 pt-4 col gap-2 print:py-0">

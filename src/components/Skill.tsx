@@ -25,7 +25,7 @@ import Vite from "../assets/icons/vite.svg?react";
 import Vitest from "../assets/icons/vitest.svg?react";
 import Vue from "../assets/icons/vuejs.svg?react";
 
-import { useCVContext } from "../CVContext";
+import { useCVContext } from "../contexts/CVContext";
 import { Icon } from "./Icon";
 
 const skillMap: Record<string, JSX.Element> = {
