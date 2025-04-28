@@ -2,7 +2,7 @@ import { Link, useSearchParams } from "react-router";
 
 import FrFlag from "../assets/icons/fr-flag.svg?react";
 import UsFlag from "../assets/icons/us-flag.svg?react";
-import { Data } from "../data";
+import { Data, getSearchParamsUrl } from "../data";
 
 export function Language({ content }: { content: Data }) {
   const [searchParams] = useSearchParams();
@@ -13,7 +13,9 @@ export function Language({ content }: { content: Data }) {
   return (
     <div className="col print:hidden">
       <Link
-        to={{ search: "" }}
+        to={{
+          search: getSearchParamsUrl(null, searchParams.get("company")),
+        }}
         className="row group items-center gap-2 text-sm"
       >
         <span
@@ -31,7 +33,9 @@ export function Language({ content }: { content: Data }) {
       </Link>
 
       <Link
-        to={{ search: "?language=en" }}
+        to={{
+          search: getSearchParamsUrl("en", searchParams.get("company")),
+        }}
         className="row group items-center gap-2 text-sm"
       >
         <span

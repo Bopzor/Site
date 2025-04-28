@@ -1,3 +1,4 @@
+import { useSearchParams } from "react-router";
 import { useAppContext } from "./contexts/AppContext";
 import { CVContextProvider } from "./contexts/CVContext";
 import { About } from "./sections/About";
@@ -10,10 +11,18 @@ import { Skills } from "./sections/Skills";
 
 export function CV() {
   const content = useAppContext();
+  const [searchParams] = useSearchParams();
 
   return (
     <CVContextProvider>
-      <div className="print:pt-2 pt-4 col gap-2 print:py-0">
+      <div className="print:pt-2 pt-4 col gap-2 print:py-0 relative">
+        {content.background[searchParams.get("company") ?? ""] && (
+          <img
+            className="absolute top-0"
+            src={content.background[searchParams.get("company") ?? ""]}
+          />
+        )}
+
         <div className="py-4 print:py-0">
           <div className="px-10">
             <Header content={content} />

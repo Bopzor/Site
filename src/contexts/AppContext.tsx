@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { useSearchParams } from "react-router";
-import { type Data, mergeData } from "../data";
+import { customizeData, type Data, mergeData } from "../data";
 
 const data: { en: Data; fr: Data } = {
   en: mergeData(
@@ -23,9 +23,9 @@ export function AppContextProvider({ children }: React.PropsWithChildren) {
 
   useEffect(() => {
     if (searchParams.get("language") === "en") {
-      setContent(data.en);
+      setContent(customizeData(data.en, searchParams.get("company")));
     } else {
-      setContent(data.fr);
+      setContent(customizeData(data.fr, searchParams.get("company")));
     }
   }, [searchParams]);
 

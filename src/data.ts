@@ -17,6 +17,7 @@ export type CommonData = {
   linkedin: string;
   github: string;
   website: string;
+  background: Record<string, string>;
   experiences: Record<string, CommonExperience>;
   skills: { hard: Record<string, string[]> };
   formations: Record<string, Omit<Formation, "name">>;
@@ -51,6 +52,7 @@ export type TranslatedData = {
 type Interest = {
   title: string;
   activities: string[];
+  companies: Record<string, string[]>;
 };
 
 export type Experience = {
@@ -86,6 +88,7 @@ export type Data = {
   linkedin: string;
   github: string;
   website: string;
+  background: Record<string, string>;
   experiencesTitle: string;
   experiences: Experience[];
   interestsTitle: string;
@@ -146,4 +149,43 @@ export function mergeData(
   }
 
   return { ...commonData, ...translatedData, experiences, skills, formations };
+}
+
+export function customizeData(data: Data, company: string | null): Data {
+  if (!company) {
+    return data;
+  }
+
+  return {
+    ...data,
+    interests: data.interests.map((interest) => {
+      if (interest.companies[company]) {
+        return {
+          ...interest,
+          activities: [...interest.companies[company], ...interest.activities],
+        };
+      }
+
+      return interest;
+    }),
+  };
+}
+
+export function getSearchParamsUrl(
+  language: string | null,
+  company: string | null
+) {
+  if (!language && !company) {
+    return "";
+  }
+
+  if (!language) {
+    return `?company=${company}`;
+  }
+
+  if (!company) {
+    return `?language=${language}`;
+  }
+
+  return `?language=${language}&company=${company}`;
 }

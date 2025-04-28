@@ -6,7 +6,7 @@ import Linkedin from "../assets/icons/linkedin.svg?react";
 import Mail from "../assets/icons/mail.svg?react";
 import Website from "../assets/icons/website.svg?react";
 import { Icon } from "../components/Icon";
-import type { Data } from "../data";
+import { getSearchParamsUrl, type Data } from "../data";
 
 export function Contact({ content }: { content: Data }) {
   const [searchParams] = useSearchParams();
@@ -33,9 +33,10 @@ export function Contact({ content }: { content: Data }) {
 
       <WithRightIcon icon={<Website />}>
         <a
-          href={`https://${content.website}?${
-            searchParams.get("language") === "en" ? "language=en" : ""
-          }`}
+          href={`https://${content.website}${getSearchParamsUrl(
+            searchParams.get("language"),
+            searchParams.get("company")
+          )}`}
         >
           {content.website}
         </a>
