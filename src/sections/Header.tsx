@@ -1,8 +1,11 @@
-import QRCode from "../assets/icons/qrcode.svg?react";
+import { useSearchParams } from "react-router";
 import { Language } from "../components/Language";
-import type { Data } from "../data";
+import { QRCode } from "../components/QRCode";
+import { getSearchParamsUrl, type Data } from "../data";
 
 export function Header({ content }: { content: Data }) {
+  const [searchParams] = useSearchParams();
+
   return (
     <section>
       <div className="grid grid-cols-4">
@@ -21,7 +24,12 @@ export function Header({ content }: { content: Data }) {
         </div>
 
         <div className="ml-auto">
-          <QRCode className="w-[100px] print:w-[80px] hidden md:block" />
+          <QRCode
+            url={`${content.website}/contact/${getSearchParamsUrl(
+              searchParams.get("language"),
+              searchParams.get("company")
+            )}`}
+          />
         </div>
       </div>
     </section>
