@@ -1,6 +1,7 @@
 type CommonExperience = {
   name: string;
   link: string;
+  missionFrom?: string;
   duration: {
     start: string;
     end?: string;
@@ -55,6 +56,7 @@ type Interest = {
 export type Experience = {
   name: string;
   link: string;
+  missionFrom?: string;
   duration: {
     start: string;
     end?: string;

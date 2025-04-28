@@ -14,7 +14,7 @@ export function Experiences({ content }: { content: Data }) {
         {content.experiences.map((experience) => (
           <div key={experience.name}>
             <div className="row flex-wrap justify-between gap-2 pb-2 items-center">
-              <div className="row flex-wrap gap-2">
+              <div className="row flex-wrap gap-2 items-end">
                 <div className="font-bold">{experience.job}</div>
                 <a
                   className="link italic"
@@ -23,6 +23,11 @@ export function Experiences({ content }: { content: Data }) {
                 >
                   {experience.name}
                 </a>
+                {experience.missionFrom && (
+                  <span className="text-sm italic text-gray-600">
+                    (via {experience.missionFrom})
+                  </span>
+                )}
               </div>
               <div className="text-sm italic">
                 {formatDate(experience.duration, content.current)}
