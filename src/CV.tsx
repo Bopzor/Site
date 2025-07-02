@@ -14,9 +14,9 @@ export function CV() {
 
   return (
     <CVContextProvider>
-      <div className="print:pt-2 pt-4 col gap-2 print:py-0 relative">
-        <CompanyCustomization content={content} />
+      <CompanyCustomization content={content} className="-z-1" />
 
+      <div className="print:pt-2 pt-4 col gap-2 print:py-0 relative">
         <div className="py-4 print:py-0">
           <div className="px-10">
             <Header content={content} />
