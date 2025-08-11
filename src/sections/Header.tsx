@@ -8,7 +8,7 @@ export function Header({ content }: { content: Data }) {
 
   return (
     <section>
-      <div className="grid grid-cols-4">
+      <div className="grid md:grid-cols-4">
         <div className="col-span-3">
           <div className="row flex-wrap items-center print:justify-between">
             <div className="row items-center gap-4">
