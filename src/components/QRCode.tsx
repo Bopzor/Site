@@ -8,7 +8,7 @@ export function QRCode({ url }: { url: string }) {
   useEffect(() => {
     const styles = getComputedStyle(document.documentElement);
     const rgb = converter("rgb");
-    const color = rgb(styles.getPropertyValue("--color-purple-800"));
+    const color = rgb(styles.getPropertyValue("--color-primary"));
 
     qrCode.toCanvas(canvasRef.current, url, {
       color: {
@@ -20,9 +20,9 @@ export function QRCode({ url }: { url: string }) {
   }, [url]);
 
   return (
-    <div className="rounded border-4 border-purple-800 hidden md:block">
+    <div className="rounded border-4 border-primary hidden md:block">
       <canvas ref={canvasRef} />
-      <div className="bg-purple-800 text-white text-sm text-center pt-1">
+      <div className="bg-primary text-white text-sm text-center pt-1">
         Contact
       </div>
     </div>

@@ -8,7 +8,7 @@ export function About({ content }: { content: Data }) {
         <img src={photo} className="size-[156px]" />
       </div>
 
-      <div className="px-4 pt-2 bg-purple-800 text-white text-sm">
+      <div className="px-4 pt-2 bg-primary text-white text-sm">
         <div className="text-2xl">"</div>
         {content.about}
         <div className="text-2xl text-right">"</div>

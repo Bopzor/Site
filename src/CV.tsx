@@ -24,7 +24,7 @@ export function CV() {
         </div>
 
         <div className="md:grid md:grid-cols-7">
-          <div className="col bg-gray-200 md:col-span-2">
+          <div className="col bg-accent/15 md:col-span-2">
             <About content={content} />
 
             <div className="col p-4 gap-2">
