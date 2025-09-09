@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router";
 import { ContactPage } from "./ContactPage";
 import { CV } from "./CV";
 import { AppContextProvider } from "./contexts/AppContext";
+import { LinkedinBanner } from "./components/LinkedinBanner";
 
 function App() {
   return (
@@ -26,6 +27,14 @@ function App() {
           element={
             <AppContextProvider>
               <ContactPage />
+            </AppContextProvider>
+          }
+        />
+        <Route
+          path="/linkedin"
+          element={
+            <AppContextProvider>
+              <LinkedinBanner />
             </AppContextProvider>
           }
         />
