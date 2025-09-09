@@ -12,18 +12,18 @@ export function SectionTitle({
 
   return (
     <div className="row items-center gap-2">
-      <div className="h-0.5 flex-1 bg-purple-800" />
+      <div className="h-0.5 flex-1 bg-accent" />
       <div className="text-wrap text-center">
         <h2
           className={[
-            "my-2 font-bold text-purple-800 print:my-1",
+            "my-2 font-bold text-primary print:my-1",
             sizeClasses[size],
           ].join(" ")}
         >
           {title}
         </h2>
       </div>
-      <div className="h-0.5 flex-1 bg-purple-800" />
+      <div className="h-0.5 flex-1 bg-accent" />
     </div>
   );
 }

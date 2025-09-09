@@ -22,11 +22,13 @@ export function ContactPage() {
         </div>
       </div>
 
-      <h1 className="text-5xl font-bold text-purple-800 text-center mr-2">
+      <h1 className="text-5xl font-bold text-primary text-center mr-2">
         {content.name}
       </h1>
 
-      <h2 className="text-3xl font-bold text-center">{content.job}</h2>
+      <h2 className="text-3xl font-bold text-center text-accent">
+        {content.job}
+      </h2>
 
       <div className="mt-6 row justify-center">
         <Contact content={content} />

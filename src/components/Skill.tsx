@@ -63,7 +63,7 @@ export function Skill({ skill }: { skill: string }) {
     <div
       className={[
         "flex items-center justify-center p-1 text-sm",
-        `${hoveredSkill === skill ? "text-purple-800" : ""}`,
+        `${hoveredSkill === skill ? "text-accent" : ""}`,
       ].join(" ")}
     >
       {icon && <Icon icon={icon} isGrayscale={hoveredSkill !== skill} />}
